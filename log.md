@@ -22,3 +22,6 @@
 上午
 - 重构 vue 的 script 代码，从 Options 转变为 Composition，即 <script setup>
 - 将API的返回值改为增量式更新，两端保持同步，而非之前的每次传回整个零件列表
+
+下午
+- 将所有内容组件化
