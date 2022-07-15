@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from "vue"
 const props = defineProps(['parts'])
-console.log(props.parts)
 
 // computed variables of total weight and CoG
 const weight_sum = computed(() => {
@@ -13,19 +12,19 @@ const weight_sum = computed(() => {
 const cox = computed(() => {
     let sum = 0
     props.parts.forEach(part => sum += part.c_x * part.weight)
-    return sum / weight_sum.value
+    return Math.round(sum / weight_sum.value)
 })
 
 const coy = computed(() => {
     let sum = 0
     props.parts.forEach(part => sum += part.c_y * part.weight)
-    return sum / weight_sum.value
+    return Math.round(sum / weight_sum.value)
 })
 
 const coz = computed(() => {
     let sum = 0
     props.parts.forEach(part => sum += part.c_z * part.weight)
-    return sum / weight_sum.value
+    return Math.round(sum / weight_sum.value)
 })
 </script>
 

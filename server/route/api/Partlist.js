@@ -16,6 +16,7 @@ router.post('/', async (req, res) => {
     console.info("New POST")
     const newPart = new Part(req.body)
     try {
+        console.log(newPart)
         const part = await newPart.save()
         if (!part) throw new Error('Something went wrong when saving')
         

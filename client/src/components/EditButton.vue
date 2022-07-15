@@ -1,6 +1,13 @@
 <script setup>
 import { ref } from 'vue'
 
+import axios from "axios"
+import { 
+    parts, partAPI, 
+    components, componentAPI,
+    traceCID
+    } from "../globe"
+
 const props = defineProps([
     "name",
     "weight",
@@ -28,27 +35,49 @@ function toggleEditPartDialog() {
     c_z.value = props.c_z
 }
 
-function editPart() {
-    emit("edit-part", props._id, name.value, weight.value, c_x.value, c_y.value, c_z.value)
+async function editPart() {
+
+    if (traceCID.value == 0) {
+        const response = await axios.patch(componentAPI + props._id, {
+            name: name.value,
+            weight: weight.value,
+            c_x: c_x.value,
+            c_y: c_y.value,
+            c_z: c_z.value,
+        })
+
+        components.value = response.data
+    }
+    else {
+        const response = await axios.patch(partAPI + props._id, {
+            name: name.value,
+            weight: weight.value,
+            c_x: c_x.value,
+            c_y: c_y.value,
+            c_z: c_z.value,
+        })
+
+        parts.value = response.data
+    }
+    
     editPartDialog.value = false
 }
 </script>
 
 <template>
-<el-container>
-    <el-button @click="toggleEditPartDialog()">Edit</el-button>
-    <el-dialog v-model="editPartDialog" title="Edit Part">
-        <el-form class="form">
-        <p>Name:</p>
-        <el-input v-model="name" type="text" placeholder="enter name" />
+    <el-popover title="Edit Part" trigger="click" style="background-color: #eeeeee">
+        <template #reference>
+            <el-button type="info" @click="toggleEditPartDialog()">Edit</el-button>
+        </template>
 
-        <el-input-number v-model="weight" :precision="2" /> weight<br />
-        <el-input-number v-model="c_x" /> x<br />
-        <el-input-number v-model="c_y" /> y<br />
-        <el-input-number v-model="c_z" /> z
+        <el-form class="form" align="center">
+            <el-input v-model="name" type="text" placeholder="enter name" />
+            <el-input-number v-model="weight" :precision="3" />
+            <el-input-number v-model="c_x" />
+            <el-input-number v-model="c_y" />
+            <el-input-number v-model="c_z" /> 
 
-        <el-button type="primary" @click="editPart" style="float: right">Edit Part</el-button>
+            <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">Edit Part</el-button>
         </el-form>
-    </el-dialog>
-</el-container>
+    </el-popover>
 </template>

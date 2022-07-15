@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const PartSchema = new Schema({
+const ComponentSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -21,12 +21,12 @@ const PartSchema = new Schema({
         type: Number,
         required: true,
     },
-    componentID: {
-        type: String,
-        required: true,
-    }
+    // systemID: {
+    //     type: String,
+    //     required: true,
+    // }
 })
 
-const Part = model('part', PartSchema)
+const Component = model('Component', ComponentSchema)
 
-module.exports = Part
+module.exports = Component

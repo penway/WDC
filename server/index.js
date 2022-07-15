@@ -6,8 +6,8 @@ const bodyParser         = require('body-parser')
 const path               = require('path')
 require('dotenv').config()
 
-const todoListRoutes     = require('./route/api/Todolist')
 const partListRoutes     = require('./route/api/Partlist')
+const componentRoutes    = require('./route/api/Componentlist')
 
 app.use(cors())  // to allow cross origin requests
 app.use(bodyParser.json())
@@ -20,8 +20,8 @@ mongoose
     .then(() => console.log('MongoDB Connected.'))
     .catch((err) => console.log(err))
 
-app.use('/api/todoList', todoListRoutes)
-app.use('/api/partList', partListRoutes)
+app.use('/api/part/', partListRoutes)
+app.use('/api/component/', componentRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`App is listening at http://localhost:${process.env.PORT}`)
