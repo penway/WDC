@@ -1,5 +1,5 @@
 <script setup>
-import { currentParts, traceName, traceID, isPart } from "../globe"
+import { currentParts, traceName, traceID, isPart } from "../../globe"
 import EditButton from "./EditButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
@@ -28,8 +28,7 @@ const forward = (id, name, isFolder) => {
 
         <el-table-column prop="name" label="Name">
             <template #default="scope">
-                <el-button link 
-                    @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
+                <el-button link @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
                     {{ scope.row.name }}
                 </el-button>
             </template>
@@ -48,12 +47,17 @@ const forward = (id, name, isFolder) => {
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
-                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" 
-                        v-if="!scope.row.isFolder"/>
-                    <delete-button :_id="scope.row._id"/>
+                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" v-if="!scope.row.isFolder" />
+                    <delete-button :_id="scope.row._id" />
                 </el-button-group>
             </template>
         </el-table-column>
 
     </el-table>
 </template>
+
+<style scoped>
+.el-table th{
+    background: rgb(143, 0, 0);
+  }
+</style>

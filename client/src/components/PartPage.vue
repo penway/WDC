@@ -1,19 +1,10 @@
 <script setup>
-import { parts, currentParts, traceName, traceID, isPart } from "../globe"
-import EditButton from "./EditButton.vue"
-import DeleteButton from "./DeleteButton.vue"
-import NewPartButton from "./ButtonNewPart.vue"
+import { traceName, traceID, isPart } from "../globe"
 
 const back = () => { 
     traceID.value.pop()
     traceName.value.pop()
     isPart.value = false
-}
-
-const forward = (id, name, isFolder) => {
-    traceID.value.push(id)
-    traceName.value.push(name)
-    isPart.value = !isFolder
 }
 </script>
 

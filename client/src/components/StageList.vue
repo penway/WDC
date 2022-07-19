@@ -1,5 +1,5 @@
 <script setup>
-import PartList from "./PartList.vue"
+import PartList from "./partlist/PartList.vue"
 import PartPage from "./PartPage.vue"
 import { isPart } from "../globe"
 </script>

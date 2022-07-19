@@ -10,8 +10,9 @@ const navi = (index) => {
 <template>
     <div class="navigator">
         <span v-for="(name, index) in traceName">
+            <span> > </span>
             <span class="buoy" @click="navi(index)">{{ name }}</span>
-            <span> / </span>
+            <br/>
         </span>
     </div>
 </template>

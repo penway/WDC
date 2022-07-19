@@ -2,7 +2,7 @@
 import axios from "axios"
 import { 
     parts, partAPI, traceID
-    } from "../globe"
+    } from "../../globe"
 
 const props = defineProps(["_id", "index"])
 const emit = defineEmits(["del-part"])

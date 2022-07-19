@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import axios from "axios"
 
-import { parts, partAPI } from "../globe"
+import { parts, partAPI } from "../../globe"
 
 const props = defineProps([
     "name",

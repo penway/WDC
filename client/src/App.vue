@@ -1,15 +1,10 @@
 <template>
     <div class="main">
-        <el-container class="head-container" style="height: calc(18vh)">
-            <header class="AppHeader">
-                <h1>Weight Distributed Calculator</h1>
-                <navigator />
-            </header>
-        </el-container>
-
         <el-container class="main-container" >
 
             <el-aside>
+                <h1>Weight Distributed Calculator</h1>
+                <navigator/>
                 <main-info :parts="parts" />
             </el-aside>
 
