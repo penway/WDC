@@ -35,3 +35,9 @@
 ### 7/18
 - 删除了 Component, 更改了 part 的定义，使得 part 可以包含 part
 - 初步测试已经完善了所有的功能，可以增加零件和部件，部件的质量会自动更新
+
+
+### 7/19
+- 在后台数据结构中增加了通用件 interchangeable，相关的前端逻辑还未写
+- 重新设计了UI
+- 开始学习 router，为 interchangeable 单独编写管理页面

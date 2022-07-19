@@ -3,13 +3,15 @@
         <el-container class="main-container" >
 
             <el-aside>
-                <h1>Weight Distributed Calculator</h1>
+                <h1>Weight Distribution Calculator</h1>
                 <navigator/>
-                <main-info :parts="parts" />
+                
+                <router-link to="/">Main</router-link><br/>
+                <router-link to="/interchangeable">interchangeable</router-link>
             </el-aside>
 
             <el-main>
-                <stage-list />
+                <router-view/>
             </el-main>
 
         </el-container>
@@ -21,10 +23,11 @@
 import axios from "axios"
 import { onMounted } from "vue"
 
+
 import { parts, partAPI } from "./globe"
 
 // components
-import MainInfo from "./components/MainInfo.vue"
+
 import Navigator from "./components/Navigator.vue"
 import StageList from "./components/StageList.vue"
 
