@@ -1,12 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-
 import axios from "axios"
-import { 
-    parts, partAPI, 
-    components, componentAPI,
-    traceCID
-    } from "../globe"
+
+import { parts, partAPI } from "../globe"
 
 const props = defineProps([
     "name",
@@ -37,28 +33,15 @@ function toggleEditPartDialog() {
 
 async function editPart() {
 
-    if (traceCID.value == 0) {
-        const response = await axios.patch(componentAPI + props._id, {
-            name: name.value,
-            weight: weight.value,
-            c_x: c_x.value,
-            c_y: c_y.value,
-            c_z: c_z.value,
-        })
+    const response = await axios.patch(partAPI + props._id, {
+        name: name.value,
+        weight: weight.value,
+        c_x: c_x.value,
+        c_y: c_y.value,
+        c_z: c_z.value,
+    })
 
-        components.value = response.data
-    }
-    else {
-        const response = await axios.patch(partAPI + props._id, {
-            name: name.value,
-            weight: weight.value,
-            c_x: c_x.value,
-            c_y: c_y.value,
-            c_z: c_z.value,
-        })
-
-        parts.value = response.data
-    }
+    parts.value = response.data
     
     editPartDialog.value = false
 }

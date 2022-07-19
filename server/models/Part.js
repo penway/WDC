@@ -21,9 +21,13 @@ const PartSchema = new Schema({
         type: Number,
         required: true,
     },
-    componentID: {
+    parentID: {
         type: String,
         required: true,
+    },
+    isFolder: {
+        type: Boolean,
+        require: true,
     }
 })
 

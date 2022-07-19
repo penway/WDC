@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const ComponentSchema = new Schema({
+const PartSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -21,12 +21,8 @@ const ComponentSchema = new Schema({
         type: Number,
         required: true,
     },
-    // systemID: {
-    //     type: String,
-    //     required: true,
-    // }
 })
 
-const Component = model('Component', ComponentSchema)
+const Interchangeable = model('Interchangeable', PartSchema)
 
-module.exports = Component
+module.exports = Interchangeable

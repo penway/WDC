@@ -1,25 +1,37 @@
 <script setup>
-import { parts, currentParts, traceCID, traceCname } from "../globe"
+import { currentParts, traceName, traceID, isPart } from "../globe"
 import EditButton from "./EditButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
 
-const back = () => { traceCID.value = 0 }
+const back = () => { 
+    traceID.value.pop()
+    traceName.value.pop()
+}
+
+const forward = (id, name, isFolder) => {
+    traceID.value.push(id)
+    traceName.value.push(name)
+    isPart.value = !isFolder
+}
 </script>
 
 <template>
+    <h2>{{ traceName[traceName.length - 1] }}</h2>
+
     <el-button-group>
-        <el-button @click="back" plain>back</el-button>
+        <el-button v-if="traceID.length > 1" @click="back" plain>back</el-button>
         <new-part-button />
     </el-button-group>
 
-    <h2>{{ traceCname }}</h2>
-
-    <el-table :data="currentParts" height="390px" style="width: 100%; " stripe>
+    <el-table :data="currentParts" stripe>
 
         <el-table-column prop="name" label="Name">
             <template #default="scope">
-                <el-button link>{{ scope.row.name }}</el-button>
+                <el-button link 
+                    @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
+                    {{ scope.row.name }}
+                </el-button>
             </template>
         </el-table-column>
         <el-table-column prop="weight" label="Weight (kg)" />
@@ -28,15 +40,17 @@ const back = () => { traceCID.value = 0 }
             <el-table-column prop="c_x" label="x" />
             <el-table-column prop="c_y" label="y" />
             <el-table-column prop="c_z" label="z" />
-            <!-- <el-table-column prop="componentID" label="ComponentID" width="300px" /> -->
+            <!-- <el-table-column prop="parentID" label="parentID" /> -->
+            <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
         <el-table-column label="Operations" width="134px">
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
-                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" />
-                    <delete-button :_id="scope.row._id" :index="scope.$index" />
+                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" 
+                        v-if="!scope.row.isFolder"/>
+                    <delete-button :_id="scope.row._id"/>
                 </el-button-group>
             </template>
         </el-table-column>

@@ -1,14 +1,17 @@
 <script setup>
-import { traceCname, traceCID } from "../globe"
+import { traceName, traceID, isPart } from "../globe"
+
+const navi = (index) => {
+    if (index + 1 < traceName.value.length) isPart.value = false
+    traceID.value.length = traceName.value.length = index + 1
+}
 </script>
 
 <template>
-    <el-breadcrumb separator="=>">
-        <el-breadcrumb-item>
-            <el-button link @click="">Soarie20</el-button>
-        </el-breadcrumb-item>
-        <el-breadcrumb-item v-if="traceCID != 0">
-            <el-button link>{{ traceCname }}</el-button>
-        </el-breadcrumb-item>
-    </el-breadcrumb>
+    <div class="navigator">
+        <span v-for="(name, index) in traceName">
+            <span class="buoy" @click="navi(index)">{{ name }}</span>
+            <span> / </span>
+        </span>
+    </div>
 </template>

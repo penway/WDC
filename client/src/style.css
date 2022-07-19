@@ -1,13 +1,17 @@
 body {
     font-family: 'Lucida Sans Regular';
+    background-color: black;
+    caret-color: transparent;
 }
 
-.AppHeader {
-    margin-bottom: 0.5em;
-    padding: 3em;
-    background-color: rgb(220, 220, 220);
-    border-radius: 0;
-    color: rgb(74, 74, 74);
+.head-container {
+    height: calc(10vh);
+    width: 1000px;
+    background-color: rgb(250, 250, 250);
+    color: rgb(12, 40, 95);
+    width: 100%;
+    padding-left: calc(5vh);
+    border-radius: 30px 30px 0px 0px;
 }
 
 h1 {
@@ -15,22 +19,28 @@ h1 {
     font-size: 2em;
 }
 
+.main-container {
+    height: calc(78.9vh);
+}
+
 aside {
     font-size: 1.2em;
-    padding-left:1.2em;
-    background-color: rgb(250, 250, 250);
-    /* border-radius: 30px 0px 0px 30px; */
-    border: 0.1em solid rgb(100, 100, 100);
-    border-right: 0;
+    padding-left: 1.2em;
+    background-color: rgb(210, 210, 210);
+    border-bottom-left-radius: 30px;
 }
 
 /* Main Part */
 main {
-    background-color: rgb(237, 237, 237);
-    border: 0.1em solid rgb(100, 100, 100);
-    border-left: 0;
+    background-color: rgb(255, 255, 255);
+    border-bottom-right-radius: 30px;
 }
 
-h2 {
-    color: rgb(47, 47, 47);
+.navigator {
+    color: #1e1e1e;
+}
+
+.buoy:hover{
+    color: #0076dd;
+    cursor: pointer;
 }
