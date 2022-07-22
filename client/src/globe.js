@@ -17,8 +17,6 @@ export const searchParts = computed(() => {
     )
 })
 
-export const globalSearch = ref("")
-
 export const isPart = ref(false)
 
 export const partAPI = "/api/part/"

@@ -23,6 +23,7 @@ const c_z = ref(0)
 const editPartDialog = ref(false)
 
 function toggleEditPartDialog() {
+    
     editPartDialog.value = !editPartDialog.value
     name.value = props.name
     weight.value = props.weight

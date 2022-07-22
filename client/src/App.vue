@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <el-container class="main-container" >
+        <el-container class="main-container">
 
             <el-aside>
                 <h1>Weight Distribution Calculator</h1>

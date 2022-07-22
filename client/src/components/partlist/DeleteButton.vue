@@ -1,13 +1,13 @@
 <script setup>
 import axios from "axios"
 import { 
-    parts, partAPI, traceID
+    parts, partAPI
     } from "../../globe"
 
-const props = defineProps(["_id", "index"])
+const props = defineProps(["_id"])
 const emit = defineEmits(["del-part"])
 
-async function removePart(id) {
+async function removePart() {
 
     const succeed = await axios.delete(partAPI + props._id);
 

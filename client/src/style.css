@@ -2,6 +2,7 @@ body {
     font-family: 'Lucida Sans Regular';
     /* caret-color: transparent; */
     margin: 0;
+    min-width: 800px;
 }
 
 h1 {

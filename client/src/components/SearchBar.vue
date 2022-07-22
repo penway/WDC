@@ -1,5 +1,8 @@
 <script setup>
-import { globalSearch, parts, traceID, traceName, localSearch } from "../globe"
+import { ref } from 'vue'
+import { parts, traceID, traceName, localSearch } from "../globe"
+
+const globalSearch = ref("")
 
 const querySearch = (queryString, cb) => {
     cb(
