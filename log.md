@@ -41,3 +41,9 @@
 - 在后台数据结构中增加了通用件 interchangeable，相关的前端逻辑还未写
 - 重新设计了UI
 - 开始学习 router，为 interchangeable 单独编写管理页面
+
+
+### 7/22
+- 放弃了 interchangeable
+- 加入了搜索功能
+- 加入了移动零件功能

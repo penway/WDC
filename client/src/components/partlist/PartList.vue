@@ -41,7 +41,8 @@ const forward = (id, name, isFolder) => {
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
-                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" v-if="!scope.row.isFolder" />
+                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" 
+                        :isFolder="scope.row.isFolder" />
                     <move-button :_id="scope.row._id" />
                     <delete-button :_id="scope.row._id" />
                 </el-button-group>

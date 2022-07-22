@@ -2,7 +2,7 @@
 import axios from "axios"
 import { ref } from 'vue'
 
-import { parts, partAPI, traceID, traceName } from "../../globe"
+import { parts, partAPI, traceID, traceName, localSearch } from "../../globe"
 
 const name = ref("")
 const weight = ref(0)
@@ -39,6 +39,7 @@ async function addPartButtonPressed(close) {
 const back = () => { 
     traceID.value.pop()
     traceName.value.pop()
+    localSearch.value = ""
 }
 </script>
 

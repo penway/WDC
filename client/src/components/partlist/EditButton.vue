@@ -10,7 +10,8 @@ const props = defineProps([
     "c_x",
     "c_y",
     "c_z",
-    "_id"
+    "_id",
+    "isFolder"
 ])
 const emit = defineEmits(["edit-part"])
 
@@ -49,17 +50,17 @@ async function editPart() {
 </script>
 
 <template>
-    <el-popover title="Edit Part" trigger="click" style="background-color: #eeeeee">
+    <el-popover title="编辑零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
             <el-button type="info" @click="toggleEditPartDialog()">Edit</el-button>
         </template>
 
         <el-form class="form" align="center">
             <el-input v-model="name" type="text" placeholder="enter name" />
-            <el-input-number v-model="weight" :precision="3" />
-            <el-input-number v-model="c_x" />
-            <el-input-number v-model="c_y" />
-            <el-input-number v-model="c_z" /> 
+            <el-input-number v-model="weight" :precision="3" v-if="isFolder"/>
+            <el-input-number v-model="c_x" v-if="isFolder"/>
+            <el-input-number v-model="c_y" v-if="isFolder"/>
+            <el-input-number v-model="c_z" v-if="isFolder"/> 
 
             <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">Edit Part</el-button>
         </el-form>
