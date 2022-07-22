@@ -48,7 +48,7 @@ const handleSelect = (item) => {
     <el-autocomplete 
         v-model="globalSearch"
         :fetch-suggestions="querySearch"
-        placeholder="Global Search"
+        placeholder="全局搜索"
         @select="handleSelect"
     />
 </template>

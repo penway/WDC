@@ -3,7 +3,7 @@
         <el-container class="main-container">
 
             <el-aside>
-                <h1>Weight Distribution Calculator</h1>
+                <h1>质量分布计算</h1>
                 <search-bar/>
                 <navigator/>
                 <main-info/>

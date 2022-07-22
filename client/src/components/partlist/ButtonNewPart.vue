@@ -48,31 +48,31 @@ const back = () => {
         
         <el-button-group>
             <el-button v-if="traceID.length > 1" @click="back" plain>back</el-button>
-            <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">New Part</el-button>
+            <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">新建零件</el-button>
         </el-button-group>
 
-        <el-drawer v-model="newPartDialog" title="Define New Part">
+        <el-drawer v-model="newPartDialog" title="定义新零件">
             <el-form class="form">
-                <el-form-item label="Name" :label-width="80">
+                <el-form-item label="名称" :label-width="100">
                     <el-input v-model="name" type="text" placeholder="enter name" />
                 </el-form-item>
 
-                <el-form-item label="is Folder" :label-width="80">
+                <el-form-item label="是否为部件" :label-width="100">
                     <el-switch v-model="isFolder" />
                 </el-form-item>
 
 
                 <div v-if="!isFolder">
-                    <el-form-item label="weight" :label-width="80">
+                    <el-form-item label="质量" :label-width="100">
                         <el-input-number v-model="weight" :precision="3" />
                     </el-form-item>
-                    <el-form-item label="x" :label-width="80">
+                    <el-form-item label="x" :label-width="100">
                         <el-input-number v-model="c_x" :precision="3" />
                     </el-form-item>
-                    <el-form-item label="y" :label-width="80">
+                    <el-form-item label="y" :label-width="100">
                         <el-input-number v-model="c_y" :precision="3" />
                     </el-form-item>
-                    <el-form-item label="z" :label-width="80">
+                    <el-form-item label="z" :label-width="100">
                         <el-input-number v-model="c_z" :precision="3" />
                     </el-form-item>
                 </div>

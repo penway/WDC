@@ -56,15 +56,15 @@ const movePart = async (item) => {
 </script>
 
 <template>
-    <el-popover title="Move Part" trigger="click" style="background-color: #eeeeee">
+    <el-popover title="移动零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button>Move</el-button>
+            <el-button>移动</el-button>
         </template>
 
     <el-autocomplete 
         v-model="globalSearch"
         :fetch-suggestions="querySearch"
-        placeholder="Search"
+        placeholder="搜索"
         @select="movePart"
     />
     </el-popover>

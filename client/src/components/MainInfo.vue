@@ -31,8 +31,8 @@ const coz = computed(() => {
 </script>
 
 <template>
-    <h4>Total Weight: {{ weight_sum }} kg</h4>
-    <h4>Centor of Gravity: </h4>
+    <h4>总质量: {{ weight_sum }} kg</h4>
+    <h4>重心: </h4>
     <ul>
         <li>{{ cox }}</li>
         <li>{{ coy }}</li>

@@ -20,9 +20,9 @@ async function removePart() {
 </script>
 
 <template>
-<el-popconfirm title="Are you sure to delete this?" @confirm="removePart(props._id)">
+<el-popconfirm title="确定删除?" @confirm="removePart(props._id)">
     <template #reference>
-        <el-button type="danger">Del</el-button>
+        <el-button type="danger">删除</el-button>
     </template>
 </el-popconfirm>
 </template>

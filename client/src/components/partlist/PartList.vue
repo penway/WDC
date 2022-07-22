@@ -17,19 +17,19 @@ const forward = (id, name, isFolder) => {
 
     <new-part-button />
 
-    <el-input v-model="localSearch" placeholder="Local Search"/>
+    <el-input v-model="localSearch" placeholder="搜索当前部件"/>
     <el-table :data="searchParts" stripe>
 
-        <el-table-column prop="name" label="Name">
+        <el-table-column prop="name" label="名称">
             <template #default="scope">
                 <el-button link @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
                     {{ scope.row.name }}
                 </el-button>
             </template>
         </el-table-column>
-        <el-table-column prop="weight" label="Weight (kg)" />
+        <el-table-column prop="weight" label="质量 (kg)" />
 
-        <el-table-column label="Coordinate">
+        <el-table-column label="坐标">
             <el-table-column prop="c_x" label="x" />
             <el-table-column prop="c_y" label="y" />
             <el-table-column prop="c_z" label="z" />
@@ -37,7 +37,7 @@ const forward = (id, name, isFolder) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column fixed="right" label="Operations" width="210%">
+        <el-table-column fixed="right" label="操作" width="210%">
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"

@@ -53,7 +53,7 @@ async function editPart() {
 <template>
     <el-popover title="编辑零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button type="info" @click="toggleEditPartDialog()">Edit</el-button>
+            <el-button type="info" @click="toggleEditPartDialog()">编辑</el-button>
         </template>
 
         <el-form class="form" align="center">
@@ -63,7 +63,7 @@ async function editPart() {
             <el-input-number v-model="c_y" v-if="!isFolder"/>
             <el-input-number v-model="c_z" v-if="!isFolder"/> 
 
-            <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">Edit Part</el-button>
+            <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">编辑零件</el-button>
         </el-form>
     </el-popover>
 </template>
