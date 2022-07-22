@@ -35,12 +35,20 @@ async function addPartButtonPressed(close) {
         newPartDialog.value = false;
     }
 }
+
+const back = () => { 
+    traceID.value.pop()
+    traceName.value.pop()
+}
 </script>
 
 <template>
     <el-container>
-
-        <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">New Part</el-button>
+        
+        <el-button-group>
+            <el-button v-if="traceID.length > 1" @click="back" plain>back</el-button>
+            <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">New Part</el-button>
+        </el-button-group>
 
         <el-drawer v-model="newPartDialog" title="Define New Part">
             <el-form class="form">

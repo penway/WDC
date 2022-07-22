@@ -5,13 +5,13 @@
             <el-aside>
                 <h1>Weight Distribution Calculator</h1>
                 <navigator/>
-                
-                <router-link to="/">Main</router-link><br/>
-                <router-link to="/interchangeable">interchangeable</router-link>
+                <main-info />
+                <!-- <router-link to="/">Main</router-link><br/> -->
+                <!-- <router-link to="/interchangeable">interchangeable</router-link> -->
             </el-aside>
 
             <el-main>
-                <router-view/>
+                <stage-list/>
             </el-main>
 
         </el-container>
@@ -27,7 +27,7 @@ import { onMounted } from "vue"
 import { parts, partAPI } from "./globe"
 
 // components
-
+import MainInfo from "./components/MainInfo.vue"
 import Navigator from "./components/Navigator.vue"
 import StageList from "./components/StageList.vue"
 

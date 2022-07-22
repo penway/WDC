@@ -4,10 +4,7 @@ import EditButton from "./EditButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
 
-const back = () => { 
-    traceID.value.pop()
-    traceName.value.pop()
-}
+
 
 const forward = (id, name, isFolder) => {
     traceID.value.push(id)
@@ -19,10 +16,7 @@ const forward = (id, name, isFolder) => {
 <template>
     <h2>{{ traceName[traceName.length - 1] }}</h2>
 
-    <el-button-group>
-        <el-button v-if="traceID.length > 1" @click="back" plain>back</el-button>
-        <new-part-button />
-    </el-button-group>
+    <new-part-button />
 
     <el-table :data="currentParts" stripe>
 
