@@ -1,5 +1,5 @@
 <script setup>
-import { globalSearch, parts } from "../globe"
+import { globalSearch, parts, traceID, traceName, localSearch } from "../globe"
 
 const querySearch = (queryString, cb) => {
     cb(
@@ -8,9 +8,36 @@ const querySearch = (queryString, cb) => {
             part => part.name.toLowerCase().includes(queryString.toLowerCase())
         )
         .map(
-            part => {return {value: part.name}}
+            part => {return {value: part.name, _id: part._id}}
         )
     )
+}
+
+const handleSelect = (item) => {
+    var currentParent = item._id
+    var idList = []
+    var nameList = []
+
+    while (currentParent != "0") {
+        var currentPart = parts.value.find(part => part._id == currentParent)
+        idList.push(currentPart._id)
+        nameList.push(currentPart.name)
+        currentParent = currentPart.parentID
+    }
+
+    nameList.push("速翼2020")
+    nameList.reverse().pop()
+    idList.push(0)
+    idList.reverse().pop()
+
+    console.log(nameList)
+    console.log(idList)
+
+    traceID.value = idList
+    traceName.value = nameList
+
+    globalSearch.value = ""
+    localSearch.value = item.value
 }
 </script>
 
@@ -19,5 +46,6 @@ const querySearch = (queryString, cb) => {
         v-model="globalSearch"
         :fetch-suggestions="querySearch"
         placeholder="Global Search"
+        @select="handleSelect"
     />
 </template>
