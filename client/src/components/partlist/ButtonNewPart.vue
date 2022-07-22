@@ -2,7 +2,7 @@
 import axios from "axios"
 import { ref } from 'vue'
 
-import { parts, partAPI, traceID } from "../../globe"
+import { parts, partAPI, traceID, traceName } from "../../globe"
 
 const name = ref("")
 const weight = ref(0)

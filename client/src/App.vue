@@ -4,10 +4,9 @@
 
             <el-aside>
                 <h1>Weight Distribution Calculator</h1>
+                <search-bar/>
                 <navigator/>
-                <main-info />
-                <!-- <router-link to="/">Main</router-link><br/> -->
-                <!-- <router-link to="/interchangeable">interchangeable</router-link> -->
+                <main-info/>
             </el-aside>
 
             <el-main>
@@ -30,7 +29,7 @@ import { parts, partAPI } from "./globe"
 import MainInfo from "./components/MainInfo.vue"
 import Navigator from "./components/Navigator.vue"
 import StageList from "./components/StageList.vue"
-
+import SearchBar from "./components/SearchBar.vue"
 
 onMounted(async () => {
     var response = await axios.get(partAPI);

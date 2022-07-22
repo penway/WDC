@@ -1,10 +1,8 @@
 <script setup>
-import { currentParts, traceName, traceID, isPart } from "../../globe"
+import { traceName, traceID, isPart, searchParts, localSearch } from "../../globe"
 import EditButton from "./EditButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
-
-
 
 const forward = (id, name, isFolder) => {
     traceID.value.push(id)
@@ -18,7 +16,8 @@ const forward = (id, name, isFolder) => {
 
     <new-part-button />
 
-    <el-table :data="currentParts" stripe>
+    <el-input v-model="localSearch" placeholder="Local Search"/>
+    <el-table :data="searchParts" stripe>
 
         <el-table-column prop="name" label="Name">
             <template #default="scope">
@@ -37,7 +36,7 @@ const forward = (id, name, isFolder) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column label="Operations" width="134px">
+        <el-table-column fixed="right" label="Operations">
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
