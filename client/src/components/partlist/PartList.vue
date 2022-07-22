@@ -37,7 +37,7 @@ const forward = (id, name, isFolder) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column fixed="right" label="Operations" width="200%">
+        <el-table-column fixed="right" label="Operations" width="210%">
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
