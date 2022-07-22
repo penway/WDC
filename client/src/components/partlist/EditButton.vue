@@ -20,6 +20,7 @@ const weight = ref(0)
 const c_x = ref(0)
 const c_y = ref(0)
 const c_z = ref(0)
+const isFolder = props.isFolder
 
 const editPartDialog = ref(false)
 
@@ -57,10 +58,10 @@ async function editPart() {
 
         <el-form class="form" align="center">
             <el-input v-model="name" type="text" placeholder="enter name" />
-            <el-input-number v-model="weight" :precision="3" v-if="isFolder"/>
-            <el-input-number v-model="c_x" v-if="isFolder"/>
-            <el-input-number v-model="c_y" v-if="isFolder"/>
-            <el-input-number v-model="c_z" v-if="isFolder"/> 
+            <el-input-number v-model="weight" :precision="3" v-if="!isFolder"/>
+            <el-input-number v-model="c_x" v-if="!isFolder"/>
+            <el-input-number v-model="c_y" v-if="!isFolder"/>
+            <el-input-number v-model="c_z" v-if="!isFolder"/> 
 
             <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">Edit Part</el-button>
         </el-form>
