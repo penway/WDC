@@ -12,7 +12,7 @@ const navi = (index) => {
     <div class="navigator">
         <span v-for="(name, index) in traceName" class="bread">
             <span class="buoy" @click="navi(index)">{{ name }}</span>
-            <span> > </span>
+            <span v-if="index < traceName.length - 1"> > </span>
         </span>
         <span class="search-bar"><SearchBar /></span>
     </div>

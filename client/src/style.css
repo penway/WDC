@@ -1,6 +1,6 @@
 body {
     font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    caret-color: transparent;
+    /* caret-color: transparent; */
     margin: 0;
     min-width: 800px;
 }
@@ -23,6 +23,7 @@ aside {
     background-color: rgb(240, 240, 240);
     border-right: #8a8a8a solid 1px;
     width: 20vw;
+    caret-color: transparent;
 }
 
 /* Main Part */

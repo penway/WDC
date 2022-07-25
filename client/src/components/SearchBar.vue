@@ -54,12 +54,26 @@ const handleSelect = (item) => {
     />
 </template>
 
-<style scoped>
-::v-deep .el-popper {
-  background: #03bdbd !important;
-  border: 1px solid #42dada !important;
+<style>
+.el-input__wrapper {
+    width: 10vw;
+    height: 2em;
+
+    /* position: fixed;
+    top: 1em;
+    right: 1.2em; */
+
+    border-radius: 10px !important;
+    border: 0 !important;
+    outline: none !important;
+    background-color: #ffffff !important; 
+
+    caret-color: #07264a;
+
+    transition: background-color 0.9s ease-in-out;
 }
-::v-deep .el-autocomplete-suggestion__list :hover {
-  color: #ff0000 !important;
+.el-input__wrapper:hover {
+    /* width: 20vw; */
+    background-color: #dfeeff !important;
 }
 </style>

@@ -1,5 +1,5 @@
 <script setup>
-import { traceName, traceID, isPart, searchParts, localSearch, currentParts } from "../../globe"
+import { traceName, traceID, isPart, searchParts, localSearch } from "../../globe"
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
@@ -10,6 +10,11 @@ const forward = (id, name, isFolder) => {
     traceName.value.push(name)
     isPart.value = !isFolder
 }
+const forward2 = (row) => {
+    traceID.value.push(row._id)
+    traceName.value.push(row.name)
+    isPart.value = !row.isFolder
+}
 </script>
 
 <template>
@@ -17,18 +22,21 @@ const forward = (id, name, isFolder) => {
     <div class="head">
         <span class="new-part-button"><new-part-button/></span>
         <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
-        <input v-model="localSearch" placeholder="搜索当前部件"/>
+        <input class="local-search" v-model="localSearch" placeholder="搜索当前部件"/>
     </div>
 
     
-    <el-table :data="searchParts" stripe height="70vh">
+    <el-table :data="searchParts" height="75vh"
+        @row-click="forward2($event)"
+        stripe
+        >
 
         <el-table-column prop="name" label="名称">
-            <template #default="scope">
+            <!-- <template #default="scope">
                 <el-button link @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
                     {{ scope.row.name }}
                 </el-button>
-            </template>
+            </template> -->
         </el-table-column>
         <el-table-column prop="weight" label="质量 (kg)" />
 
@@ -55,7 +63,14 @@ const forward = (id, name, isFolder) => {
     </el-table>
 </template>
 
-<style scoped>
+<style>
+/* .el-table--enable-row-hover,  */
+.el-table__body tr:hover > td {
+    background-color: #bdcad7 !important;
+    color: #0b3c76 !important;
+    cursor: pointer;
+}
+
 .new-part-button {
     vertical-align: text-bottom;
 }
@@ -66,14 +81,14 @@ const forward = (id, name, isFolder) => {
     padding: 1em;
     display: flex;
     vertical-align: center;
+    caret-color: transparent;
 }
 .headerii {
     margin-left: 1em;
     font-size: 1.5em;
     font-family: 'Lucida Sans';
 }
-input {
-    float: right;
+input.local-search {
     width: 20vw;
     height: 2.5em;
 
@@ -85,17 +100,19 @@ input {
     background-color: #e4effc;
 
     caret-color: #07264a;
+
+    transition: all 0.2s ease-in-out;
 }
-input::placeholder {
+input.local-search::placeholder {
     padding-left: 1em;
 }
-input:hover {
-    box-shadow: 0px 0px 6px 1px #888888;
+input.local-search:hover {
+    box-shadow: 0px 0px 5px 1px #888888;
+    background-color: #deeaf9;
 }
-input:focus {
+input.local-search:focus {
     outline: none;
     box-shadow: 0;
-    background-color: #e9e9e9;
+    
 }
-
 </style>

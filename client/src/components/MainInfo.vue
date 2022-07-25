@@ -61,6 +61,8 @@ const coz = computed(() => {
 
     text-align: center;
     padding: 1em;
+
+    transition: all 0.5s ease-in-out;
 }
 .cog:hover {
     box-shadow: 0px 0px 6px 1px #888888;

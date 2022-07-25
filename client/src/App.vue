@@ -5,6 +5,8 @@
             <aside>
                 <img src="./assets/srticon.png" alt="" class="logo"/>
                 <h1>质量分布计算</h1>
+                <!-- <BimFace/> -->
+                <!-- <div style="width:19vw; height:30vh; border: 1px solid black;"/> -->
                 <main-info/>
             </aside>
 
@@ -29,6 +31,7 @@ import { parts, partAPI } from "./globe"
 import MainInfo from "./components/MainInfo.vue"
 import Navigator from "./components/Navigator.vue"
 import StageList from "./components/StageList.vue"
+import BimFace from "./components/bim/BimFace.vue"
 
 onMounted(async () => {
     var response = await axios.get(partAPI);
