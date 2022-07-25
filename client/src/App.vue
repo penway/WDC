@@ -2,16 +2,16 @@
     <div class="main">
         <el-container class="main-container">
 
-            <el-aside>
+            <aside>
+                <img src="./assets/srticon.png" alt="" class="logo"/>
                 <h1>质量分布计算</h1>
-                <search-bar/>
-                <navigator/>
                 <main-info/>
-            </el-aside>
+            </aside>
 
-            <el-main>
+            <main>
+                <navigator/>
                 <stage-list/>
-            </el-main>
+            </main>
 
         </el-container>
     </div>
@@ -29,7 +29,6 @@ import { parts, partAPI } from "./globe"
 import MainInfo from "./components/MainInfo.vue"
 import Navigator from "./components/Navigator.vue"
 import StageList from "./components/StageList.vue"
-import SearchBar from "./components/SearchBar.vue"
 
 onMounted(async () => {
     var response = await axios.get(partAPI);

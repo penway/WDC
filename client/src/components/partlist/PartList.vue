@@ -1,5 +1,5 @@
 <script setup>
-import { traceName, traceID, isPart, searchParts, localSearch } from "../../globe"
+import { traceName, traceID, isPart, searchParts, localSearch, currentParts } from "../../globe"
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
@@ -13,12 +13,15 @@ const forward = (id, name, isFolder) => {
 </script>
 
 <template>
-    <h2>{{ traceName[traceName.length - 1] }}</h2>
 
-    <new-part-button />
+    <div class="head">
+        <span class="new-part-button"><new-part-button/></span>
+        <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
+        <input v-model="localSearch" placeholder="搜索当前部件"/>
+    </div>
 
-    <el-input v-model="localSearch" placeholder="搜索当前部件"/>
-    <el-table :data="searchParts" stripe>
+    
+    <el-table :data="searchParts" stripe height="70vh">
 
         <el-table-column prop="name" label="名称">
             <template #default="scope">
@@ -53,7 +56,46 @@ const forward = (id, name, isFolder) => {
 </template>
 
 <style scoped>
-.el-table th{
-    background: rgb(143, 0, 0);
-  }
+.new-part-button {
+    vertical-align: text-bottom;
+}
+.el-table {
+    width: 100%;
+}
+.head {
+    padding: 1em;
+    display: flex;
+    vertical-align: center;
+}
+.headerii {
+    margin-left: 1em;
+    font-size: 1.5em;
+    font-family: 'Lucida Sans';
+}
+input {
+    float: right;
+    width: 20vw;
+    height: 2.5em;
+
+    position: absolute;
+    right: 1.2em;
+
+    border-radius: 10px;
+    border: 0;
+    background-color: #e4effc;
+
+    caret-color: #07264a;
+}
+input::placeholder {
+    padding-left: 1em;
+}
+input:hover {
+    box-shadow: 0px 0px 6px 1px #888888;
+}
+input:focus {
+    outline: none;
+    box-shadow: 0;
+    background-color: #e9e9e9;
+}
+
 </style>

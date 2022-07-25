@@ -50,5 +50,16 @@ const handleSelect = (item) => {
         :fetch-suggestions="querySearch"
         placeholder="全局搜索"
         @select="handleSelect"
+        popper-append-to-body=“false”
     />
 </template>
+
+<style scoped>
+::v-deep .el-popper {
+  background: #03bdbd !important;
+  border: 1px solid #42dada !important;
+}
+::v-deep .el-autocomplete-suggestion__list :hover {
+  color: #ff0000 !important;
+}
+</style>

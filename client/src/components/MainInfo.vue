@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from "vue"
 import { parts } from "../globe"
-// const props = defineProps(['parts'])
 
 
 // computed variables of total weight and CoG
@@ -30,12 +29,50 @@ const coz = computed(() => {
 })
 </script>
 
+
 <template>
-    <h4>总质量: {{ weight_sum }} kg</h4>
-    <h4>重心: </h4>
-    <ul>
-        <li>{{ cox }}</li>
-        <li>{{ coy }}</li>
-        <li>{{ coz }}</li>
-    </ul>
+    <div class="main-info">
+        <h4></h4>
+        <div class="cog">
+            <h1>总质量</h1>
+            <p>{{ weight_sum }} kg</p>
+        </div>
+        <div class="cog">
+            <h1>重心</h1>
+            <p>{{ cox }}</p>
+            <p>{{ coy }}</p>
+            <p>{{ coz }}</p>
+        </div>
+    </div>
 </template>
+
+
+<style scoped>
+.main-info {
+    position: absolute;
+    bottom: 0vw;
+    width: calc(19vw);
+}
+.cog {
+    border-radius: 10px;
+    color: white;
+    background-color: #1c79e8;
+    margin-bottom: 1em;
+
+    text-align: center;
+    padding: 1em;
+}
+.cog:hover {
+    box-shadow: 0px 0px 6px 1px #888888;
+}
+h1 {
+    color: white;
+    font-size: 1.2em;
+    margin: 0;
+    padding-bottom: 1em;
+}
+p { 
+    margin: 0;
+    padding: 0.2em;
+}
+</style>

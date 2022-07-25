@@ -1,6 +1,6 @@
 body {
-    font-family: 'Lucida Sans Regular';
-    /* caret-color: transparent; */
+    font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    caret-color: transparent;
     margin: 0;
     min-width: 800px;
 }
@@ -8,7 +8,8 @@ body {
 h1 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 2em;
-    color: rgb(16, 57, 147);
+    color: #1157aa;
+    margin-top: 0;
 }
 
 .main-container {
@@ -18,24 +19,21 @@ h1 {
 aside {
     font-size: 1.2em;
     padding-left: 1.2em;
+    padding-right: 1.2em;
     background-color: rgb(240, 240, 240);
     border-right: #8a8a8a solid 1px;
+    width: 20vw;
 }
 
 /* Main Part */
 main {
     background-color: rgb(255, 255, 255);
+    padding: 0;
+    width: 80vw;
 }
 
-.navigator {
-    color: #1e1e1e;
+.logo {
+    margin-top: 1.2em;
+    width: 50%;
 }
 
-.buoy:hover{
-    color: #0076dd;
-    cursor: pointer;
-}
-
-.buoy:active {
-    color: #0076ddbc;
-}
