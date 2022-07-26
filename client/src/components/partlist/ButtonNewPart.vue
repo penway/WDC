@@ -45,8 +45,8 @@ const back = () => {
 
 <template>
     <el-button-group>
-        <el-button v-if="traceID.length > 1" @click="back" plain>back</el-button>
-        <el-button v-else disabled @click="back" plain>back</el-button>
+        <el-button v-if="traceID.length > 1" @click="back" plain class="back" >back</el-button>
+        <el-button v-else disabled @click="back" plain class="back">back</el-button>
         <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">新建零件</el-button>
     </el-button-group>
 
@@ -88,9 +88,24 @@ const back = () => {
 
 
 <style scoped>
+.back {
+    border: 0;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    background-color: #eaeaea;
+}
+.back:hover {
+    color: black;
+    background-color: #d1d1d1;
+}
+.is-disabled {
+    color: #c1c1c1 !important;
+    background-color: #f1f1f1 !important;
+}
 .confirm {
     margin-bottom: 20px;
     background-color: #1157aa;
+    border-radius: 10px;
     border: 0;
 }
 .confirm:hover {
