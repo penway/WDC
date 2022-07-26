@@ -68,7 +68,9 @@ function makeMarkers() {
     <div>
         <div id="domId" class="domClass"/>
         <!-- <div class="bimController"/> -->
-        <button class="button" id="btnAddMarker" @click="makeMarkers">放置三维标签</button>
+        <button class="button" id="btnAddMarker" @click="makeMarkers">
+            显示零件位置
+        </button>
     </div>
 </template>
 
@@ -76,7 +78,7 @@ function makeMarkers() {
 
 .domClass {
     width: 36.5vw;
-    height: 70vh;
+    height: 68vh;
     border-radius: 0px 0px 20px 20px;
 
     transition: all 0.5s ease-in-out;
