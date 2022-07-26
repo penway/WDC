@@ -53,7 +53,7 @@ async function editPart() {
 <template>
     <el-popover title="编辑零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button type="info" @click="toggleEditPartDialog()">编辑</el-button>
+            <el-button @click="toggleEditPartDialog()">编辑</el-button>
         </template>
 
         <el-form class="form" align="center">

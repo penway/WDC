@@ -4,12 +4,23 @@ body {
     margin: 0;
     min-width: 800px;
 }
-
+.headeri {
+    margin-bottom: 30px;
+}
+.logo {
+    margin-top: 1.2em;
+    width: 100px;
+    display: inline;
+}
 h1 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 2em;
     color: #1157aa;
-    margin-top: 0;
+
+    margin-left: 10px;
+    margin-bottom: 20vh;
+
+    display: inline;
 }
 
 .main-container {
@@ -22,19 +33,16 @@ aside {
     padding-right: 1.2em;
     background-color: rgb(240, 240, 240);
     border-right: #8a8a8a solid 1px;
-    width: 20vw;
+    width: 38.2vw;
     caret-color: transparent;
 }
 
 /* Main Part */
 main {
-    background-color: rgb(255, 255, 255);
+    background-color: #fefefe;
     padding: 0;
-    width: 80vw;
+    width: 61.8vw;
 }
 
-.logo {
-    margin-top: 1.2em;
-    width: 50%;
-}
+
 

@@ -22,6 +22,12 @@ export const searchParts = computed(() => {
     }))
 })
 
+export const currentPart = computed(() => 
+    parts.value.find(part => 
+        part._id == traceID.value[traceID.value.length - 1]
+    )
+)
+
 export const isPart = ref(false)
 
 export const partAPI = "/api/part/"

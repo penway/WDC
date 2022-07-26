@@ -54,14 +54,14 @@ const handleSelect = (item) => {
     />
 </template>
 
-<style>
+<!-- <style>
 .el-input__wrapper {
     width: 10vw;
     height: 2em;
 
     /* position: fixed;
-    top: 1em;
-    right: 1.2em; */
+    top: 0.9em;
+    right: 15em; */
 
     border-radius: 10px !important;
     border: 0 !important;
@@ -76,4 +76,4 @@ const handleSelect = (item) => {
     /* width: 20vw; */
     background-color: #dfeeff !important;
 }
-</style>
+</style> -->

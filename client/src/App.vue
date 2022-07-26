@@ -3,11 +3,14 @@
         <el-container class="main-container">
 
             <aside>
-                <img src="./assets/srticon.png" alt="" class="logo"/>
-                <h1>质量分布计算</h1>
-                <!-- <BimFace/> -->
-                <!-- <div style="width:19vw; height:30vh; border: 1px solid black;"/> -->
-                <main-info/>
+                <div class="headeri">
+                    <img src="./assets/srticon.png" alt="" class="logo"/>
+                    <h1>质量分布计算</h1>
+                </div>
+                <div>
+                    <main-info/>
+                    <BimFace/>
+                </div>
             </aside>
 
             <main>

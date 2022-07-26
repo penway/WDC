@@ -22,7 +22,7 @@ async function removePart() {
 <template>
 <el-popconfirm title="确定删除?" @confirm="removePart(props._id)">
     <template #reference>
-        <el-button type="danger">删除</el-button>
+        <el-button>删除</el-button>
     </template>
 </el-popconfirm>
 </template>

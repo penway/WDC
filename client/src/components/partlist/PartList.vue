@@ -1,20 +1,17 @@
 <script setup>
-import { traceName, traceID, isPart, searchParts, localSearch } from "../../globe"
+import { traceName, traceID, isPart, searchParts, localSearch, currentPart } from "../../globe"
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
 
-const forward = (id, name, isFolder) => {
-    traceID.value.push(id)
-    traceName.value.push(name)
-    isPart.value = !isFolder
-}
-const forward2 = (row) => {
+const forward = (row) => {
+
     traceID.value.push(row._id)
     traceName.value.push(row.name)
     isPart.value = !row.isFolder
 }
+
 </script>
 
 <template>
@@ -22,22 +19,22 @@ const forward2 = (row) => {
     <div class="head">
         <span class="new-part-button"><new-part-button/></span>
         <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
+        <span class="headerii-info" v-if="traceID.length > 1">
+            {{ currentPart.weight }} kg
+            ({{ currentPart.c_x.toFixed(2) }},
+            {{ currentPart.c_y.toFixed(2) }},
+            {{ currentPart.c_z.toFixed(2) }})
+        </span>
         <input class="local-search" v-model="localSearch" placeholder="搜索当前部件"/>
     </div>
 
     
     <el-table :data="searchParts" height="75vh"
-        @row-click="forward2($event)"
+        @row-dblclick="forward($event)"
         stripe
         >
 
-        <el-table-column prop="name" label="名称">
-            <!-- <template #default="scope">
-                <el-button link @click="forward(scope.row._id, scope.row.name, scope.row.isFolder)">
-                    {{ scope.row.name }}
-                </el-button>
-            </template> -->
-        </el-table-column>
+        <el-table-column prop="name" label="名称" />
         <el-table-column prop="weight" label="质量 (kg)" />
 
         <el-table-column label="坐标">
@@ -72,7 +69,7 @@ const forward2 = (row) => {
 }
 
 .new-part-button {
-    vertical-align: text-bottom;
+    vertical-align: text-top;
 }
 .el-table {
     width: 100%;
@@ -88,31 +85,39 @@ const forward2 = (row) => {
     font-size: 1.5em;
     font-family: 'Lucida Sans';
 }
+.headerii-info {
+    margin-left: 1em;
+    margin-bottom: 1em;
+    padding: 0.5em 1em 0.2em 1em;
+
+    border-radius: 10px;
+    font-size: 1em;
+
+    transition: all 0.2s ease-in-out;
+}
+.headerii-info:hover {
+    box-shadow: 0 0 5px 1px #b5b5b5;
+}
 input.local-search {
-    width: 20vw;
+    width: 7vw;
     height: 2.5em;
 
     position: absolute;
     right: 1.2em;
+    padding-left: 1em;
 
     border-radius: 10px;
     border: 0;
-    background-color: #e4effc;
+    background-color: #eaeaea;
 
     caret-color: #07264a;
 
     transition: all 0.2s ease-in-out;
 }
-input.local-search::placeholder {
-    padding-left: 1em;
-}
-input.local-search:hover {
-    box-shadow: 0px 0px 5px 1px #888888;
-    background-color: #deeaf9;
-}
-input.local-search:focus {
+input.local-search:hover, input.local-search:focus {
+    box-shadow: -20px 0px 0px 0px #2f5499;
+    background-color: #dcdcdc;
+    width: 11vw;
     outline: none;
-    box-shadow: 0;
-    
 }
 </style>

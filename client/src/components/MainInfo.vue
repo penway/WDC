@@ -32,49 +32,46 @@ const coz = computed(() => {
 
 <template>
     <div class="main-info">
-        <h4></h4>
-        <div class="cog">
-            <h1>总质量</h1>
-            <p>{{ weight_sum }} kg</p>
-        </div>
-        <div class="cog">
-            <h1>重心</h1>
-            <p>{{ cox }}</p>
-            <p>{{ coy }}</p>
-            <p>{{ coz }}</p>
-        </div>
+        <h1>总质量</h1>
+        <p>{{ weight_sum }} kg</p>
+        <br/>
+        <h1>重心</h1>
+        <p>{{ cox }}</p>
+        <p>{{ coy }}</p>
+        <p>{{ coz }}</p>
     </div>
 </template>
 
 
 <style scoped>
 .main-info {
-    position: absolute;
-    bottom: 0vw;
-    width: calc(19vw);
-}
-.cog {
-    border-radius: 10px;
+    width: 36.5vw;
+    height: 10vh;
+
+    border-radius: 20px 20px 0px 0px;
     color: white;
-    background-color: #1c79e8;
-    margin-bottom: 1em;
+    background-color: #0b458c;
+    padding: 2vh 0 1vh 0;
+    /* margin-bottom: 1em; */
 
     text-align: center;
-    padding: 1em;
 
     transition: all 0.5s ease-in-out;
 }
-.cog:hover {
-    box-shadow: 0px 0px 6px 1px #888888;
+.main-info:hover {
+    background-color: #1c79e8;
+    box-shadow: 0px 0px 8px 2px #888888;
 }
 h1 {
     color: white;
     font-size: 1.2em;
     margin: 0;
     padding-bottom: 1em;
+    display: inline;
 }
 p { 
     margin: 0;
     padding: 0.2em;
+    display: inline;
 }
 </style>
