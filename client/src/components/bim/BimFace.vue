@@ -1,10 +1,11 @@
 <script setup>
-import { ElMessage } from 'element-plus'
+import { watch } from "vue"
 import "./BimfaceSDKLoader.js"
 import { parts, searchParts } from "../../globe"
 
 const viewToken = '9d1663de53d94cc0a8e65b284305885e';
 var viewer3D;
+var model3D;
 var app;
 var markerContainer
 
@@ -24,8 +25,23 @@ function successCallback(viewMetaData) {
     app = new Glodon.Bimface.Application.WebApplication3D(webAppConfig);
     app.addView(viewToken);
     viewer3D = app.getViewer();
+    
 
+    //自适应屏幕大小
+    window.onresize = function () {
+            viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40)
+    }
+
+    // 加载完成后初始化
+    viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, () => {
+        model3D = viewer3D.getModel();
+        makeMarkers()
+        transparentAll()
+    });
+    
     makeMarkerContainer()
+
+    watch(searchParts, () => { makeMarkers() })  // 监听更新，有零件的更新就自动更新点位
 }
 // 加载失败回调函数
 function failureCallback(error) {
@@ -40,23 +56,28 @@ function makeMarkerContainer() {
     markerContainer = 
         new Glodon.Bimface.Plugins.Marker3D.Marker3DContainer(markerContainerConfig);
 }
+
 function addMarker(part) {
-    // 构造三维标签配置项
-    var markerConfig = new Glodon.Bimface.Plugins.Marker3D.Marker3DConfig();
     
-    markerConfig.src = "http://static.bimface.com/resources/3DMarker/warner/warner_red.png";  // 为标签指定图片路径
+    var marker = new Glodon.Bimface.Plugins.Marker3D.Marker3D(new Glodon.Bimface.Plugins.Marker3D.Marker3DConfig());  // 构造三维标签
 
-    // 构造点位，并指定为标签的插入点
-    markerConfig.worldPosition = 
-        { "x": part.c_x, "y": part.c_y, "z": part.c_z };  
-    markerConfig.size = 30;  // 指定标签大小
-    
-    var marker = new Glodon.Bimface.Plugins.Marker3D.Marker3D(markerConfig);  // 构造三维标签
-
+    marker.setSrc(require('../../assets/spot.png'))
+    marker.setSize(30)
+    marker.setWorldPosition({ "x": part.c_x, "y": part.c_y, "z": part.c_z })
     // 添加标签的点击事件
-    marker.onClick(() => {
-        ElMessage(part.name)
-    });
+    // marker.onClick(() => {
+    //     ElMessage({
+    //         message: part.name,
+    //         grouping: true,
+    //     })
+    // });
+    marker.setTooltip(part.name);
+    // marker.onHover(() => {
+    //     ElMessage({
+    //         message: part.name,
+    //         grouping: true,
+    //     })
+    // });
     
     markerContainer.addItem(marker);  // 将三维标签添加至容器内
 }
@@ -67,14 +88,26 @@ const makeMarkers = () => {
         addMarker(part)
     })
 }
+
+const transparentAll = () => {
+    let color = new Glodon.Web.Graphics.Color("#E0E0E0", 0.3);
+    console.log(model3D)
+    model3D.overrideAllComponentsColor(color);
+    viewer3D.render();
+}
+
+
 </script>
 
 <template>
     <div>
         <div id="domId" class="domClass"/>
-        <button class="button" id="btnAddMarker" @click="makeMarkers">
+        <!-- <button class="button" id="btnAddMarker" @click="makeMarkers">
             显示零件位置
-        </button>
+        </button> -->
+        <!-- <button class="button" @click="transparentAll">
+            TR
+        </button> -->
     </div>
 </template>
 
@@ -106,5 +139,12 @@ const makeMarkers = () => {
     right: 5px !important;
     /* width: 30px !important;
     height: 30px !important; */
+}
+.bf-tooltip {
+    color: white !important;
+    background-color: #1157aa !important;
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+    border: none !important;
 }
 </style>

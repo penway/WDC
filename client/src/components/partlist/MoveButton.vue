@@ -19,9 +19,6 @@ const ancestor = (item) => {
         currentParent = currentPart.parentID
     }
 
-    console.log(item.name)
-    console.log()
-
     return !idList.includes(props._id)
 }
 
