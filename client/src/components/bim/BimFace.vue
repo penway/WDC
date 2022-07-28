@@ -37,17 +37,13 @@ function successCallback(viewMetaData) {
     viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, () => {
         model3D = viewer3D.getModel()
         
-        //viewer3D.Marker3DContainergetComponentsByClientCoordinates(clientCoordinates)
         makeMarkers()
         transparentAll()
-        // model3D.deactivateComponentsById([...Array(100).keys()])
     });
 
     viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ComponentsHoverChanged, 
-        (data) => {
-            model3D.deactivateComponentsById([data.elementId])
-            }
-        )
+        (data) => { model3D.deactivateComponentsById([data.elementId]) }
+    )
     
     makeMarkerContainer()
 
@@ -109,23 +105,11 @@ const transparentAll = () => {
     model3D.overrideAllComponentsColor(color);
     viewer3D.render();
 }
-
-const what = () => {
-    viewer3D.getModel().getNestedComponents((data) => {
-        alert(JSON.stringify(data));
-    })
-}
 </script>
 
 <template>
     <div>
         <div id="domId" class="domClass"/>
-        <!-- <button class="button" id="btnAddMarker" @click="makeMarkers">
-            显示零件位置
-        </button> -->
-        <button class="button" @click="what">
-            TR
-        </button>
     </div>
 </template>
 
