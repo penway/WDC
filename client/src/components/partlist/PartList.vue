@@ -38,9 +38,9 @@ const forward = (row) => {
         <el-table-column prop="weight" label="质量 (kg)" />
 
         <el-table-column label="坐标">
-            <el-table-column prop="c_x" label="x" />
-            <el-table-column prop="c_y" label="y" />
-            <el-table-column prop="c_z" label="z" />
+            <el-table-column prop="x2" label="x" />
+            <el-table-column prop="y2" label="y" />
+            <el-table-column prop="z2" label="z" />
             <!-- <el-table-column prop="parentID" label="parentID" /> -->
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>

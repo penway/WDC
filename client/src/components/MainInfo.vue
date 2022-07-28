@@ -1,32 +1,5 @@
 <script setup>
-import { computed } from "vue"
-import { parts } from "../globe"
-
-
-// computed variables of total weight and CoG
-const weight_sum = computed(() => {
-    let sum = 0
-    parts.value.forEach(part => { if (part.parentID == "0") sum += part.weight })
-    return sum
-})
-
-const cox = computed(() => {
-    let sum = 0
-    parts.value.forEach(part => { if (part.parentID == "0") sum += part.c_x * part.weight })
-    return Math.round(sum / weight_sum.value)
-})
-
-const coy = computed(() => {
-    let sum = 0
-    parts.value.forEach(part => { if (part.parentID == "0") sum += part.c_y * part.weight })
-    return Math.round(sum / weight_sum.value)
-})
-
-const coz = computed(() => {
-    let sum = 0
-    parts.value.forEach(part => { if (part.parentID == "0") sum += part.c_z * part.weight })
-    return Math.round(sum / weight_sum.value)
-})
+import { weight_sum, cox, coy, coz } from "../globe"
 </script>
 
 

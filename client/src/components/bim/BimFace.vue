@@ -1,7 +1,7 @@
 <script setup>
 import { watch } from "vue"
 import "./BimfaceSDKLoader.js"
-import { parts, searchParts } from "../../globe"
+import { currentPart, searchParts } from "../../globe"
 
 const viewToken = '9d1663de53d94cc0a8e65b284305885e';
 var viewer3D;
@@ -24,20 +24,30 @@ function successCallback(viewMetaData) {
     // 创建WebApplication3D，用以显示模型
     app = new Glodon.Bimface.Application.WebApplication3D(webAppConfig);
     app.addView(viewToken);
-    viewer3D = app.getViewer();
+    viewer3D = app.getViewer()
+    viewer3D.enableHover(true)  // 允许获得鼠标悬停事件
     
 
     //自适应屏幕大小
     window.onresize = function () {
-            viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40)
+        viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40)
     }
 
     // 加载完成后初始化
     viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, () => {
-        model3D = viewer3D.getModel();
+        model3D = viewer3D.getModel()
+        
+        //viewer3D.Marker3DContainergetComponentsByClientCoordinates(clientCoordinates)
         makeMarkers()
         transparentAll()
+        // model3D.deactivateComponentsById([...Array(100).keys()])
     });
+
+    viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ComponentsHoverChanged, 
+        (data) => {
+            model3D.deactivateComponentsById([data.elementId])
+            }
+        )
     
     makeMarkerContainer()
 
@@ -57,11 +67,15 @@ function makeMarkerContainer() {
         new Glodon.Bimface.Plugins.Marker3D.Marker3DContainer(markerContainerConfig);
 }
 
-function addMarker(part) {
+function addMarker(part, isParent) {
     
     var marker = new Glodon.Bimface.Plugins.Marker3D.Marker3D(new Glodon.Bimface.Plugins.Marker3D.Marker3DConfig());  // 构造三维标签
 
-    marker.setSrc(require('../../assets/spot.png'))
+    if (isParent) {
+        marker.setSrc(require('../../assets/spotP.png'))
+    } else {
+        marker.setSrc(require('../../assets/spot.png'))
+    }
     marker.setSize(30)
     marker.setWorldPosition({ "x": part.c_x, "y": part.c_y, "z": part.c_z })
     // 添加标签的点击事件
@@ -71,7 +85,7 @@ function addMarker(part) {
     //         grouping: true,
     //     })
     // });
-    marker.setTooltip(part.name);
+    marker.setTooltip(part.name + " " + part.weight.toFixed(1) + "kg");
     // marker.onHover(() => {
     //     ElMessage({
     //         message: part.name,
@@ -85,18 +99,22 @@ function addMarker(part) {
 const makeMarkers = () => {
     markerContainer.clear()
     searchParts.value.forEach((part) => {
-        addMarker(part)
+        addMarker(part, false)
     })
+    addMarker(currentPart.value, true)
 }
 
 const transparentAll = () => {
     let color = new Glodon.Web.Graphics.Color("#E0E0E0", 0.3);
-    console.log(model3D)
     model3D.overrideAllComponentsColor(color);
     viewer3D.render();
 }
 
-
+const what = () => {
+    viewer3D.getModel().getNestedComponents((data) => {
+        alert(JSON.stringify(data));
+    })
+}
 </script>
 
 <template>
@@ -105,9 +123,9 @@ const transparentAll = () => {
         <!-- <button class="button" id="btnAddMarker" @click="makeMarkers">
             显示零件位置
         </button> -->
-        <!-- <button class="button" @click="transparentAll">
+        <button class="button" @click="what">
             TR
-        </button> -->
+        </button>
     </div>
 </template>
 
