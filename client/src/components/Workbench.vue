@@ -4,7 +4,9 @@
 
             <aside>
                 <div class="headeri">
-                    <img src="@/assets/srticon.png" alt="" class="logo"/>
+                    <router-link to="/">
+                        <img src="@/assets/srticon.png" alt="" class="logo"/>
+                    </router-link>
                     <h1>质量分布计算</h1>
                 </div>
                 <div>
