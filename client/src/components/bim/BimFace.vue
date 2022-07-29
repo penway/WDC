@@ -1,12 +1,15 @@
 <script setup>
+// 显示3D模型的组件，调用的是 广联达BIMFACE 的接口
+// 相关的文档和学习资料 https://bimface.com/
+
 import { watch } from "vue"
 import "./BimfaceSDKLoader.js"
 import { currentPart, searchParts } from "../../globe"
 
-const viewToken = '9d1663de53d94cc0a8e65b284305885e';
-var viewer3D;
-var model3D;
-var app;
+const viewToken = '9d1663de53d94cc0a8e65b284305885e'
+var viewer3D
+var model3D
+var app
 var markerContainer
 
 // 配置JSSDK加载项
@@ -15,7 +18,7 @@ window.onload = function () {
     loaderConfig.viewToken = viewToken;
     BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);
 }
-// 加载成功回调函数
+// 加载成功回调函数，主要的配置内容都在此函数中
 function successCallback(viewMetaData) {
     var dom4Show = document.getElementById('domId');
     // 设置WebApplication3D的配置项
@@ -117,19 +120,20 @@ const transparentAll = () => {
 
 .domClass {
     width: 36.5vw;
-    height: 68vh;
-    border-radius: 0px 0px 20px 20px;
-
+    height: 80vh;
+    border-radius: 4vh;
+    border: 2px solid #1157aa;
     transition: all 0.5s ease-in-out;
 }
 .domClass:hover {
-    box-shadow: 0px 0px 8px 2px #888888;
+    /* box-shadow: 0px 30px 0px 0px #1157aa; */
+    border: 2px solid #1157aa;
 }
 .bf-container {
-    border-radius: 0px 0px 20px 20px !important;
+    border-radius: 4vh!important;
 }
 .bf-house, .bf-menu-svg, 
-.bf-toolbar-bottom
+.bf-toolbar-bottom, .bf-tree-toolbar
 {
     width: 0px !important;
     height: 0px !important;
@@ -137,8 +141,8 @@ const transparentAll = () => {
 }
 .bf-home-svg {
     position: absolute !important;
-    top: 10px !important;
-    right: 5px !important;
+    top: 12px !important;
+    right: 12px !important;
     /* width: 30px !important;
     height: 30px !important; */
 }

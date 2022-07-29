@@ -1,5 +1,5 @@
 <script setup>
-import { traceName, traceID, isPart, searchParts, localSearch, currentPart } from "../../globe"
+import { traceName, traceID, isPart, searchParts, localSearch, currentPart, admin } from "../../globe"
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
@@ -45,9 +45,9 @@ const forward = (row) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="210%">
+        <el-table-column fixed="right" label="操作" width="210%" v-if="admin">
             <template #default="scope">
-                <el-button-group>
+                <el-button-group >
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
                         :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" 
                         :isFolder="scope.row.isFolder" />

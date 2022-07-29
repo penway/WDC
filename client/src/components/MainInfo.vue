@@ -5,46 +5,38 @@ import { weight_sum, cox, coy, coz } from "../globe"
 
 <template>
     <div class="main-info">
-        <h1>总质量</h1>
-        <p>{{ weight_sum }} kg</p>
-        <br/>
-        <h1>重心</h1>
-        <p>{{ cox }}</p>
-        <p>{{ coy }}</p>
-        <p>{{ coz }}</p>
+        总质量
+        {{ weight_sum }} kg &nbsp&nbsp&nbsp&nbsp&nbsp
+        重心
+        ({{ cox }}, 
+        {{ coy }}, 
+        {{ coz }})
     </div>
 </template>
 
 
 <style scoped>
 .main-info {
-    width: 36.5vw;
-    height: 10vh;
+    position: relative;
+    top: -7vh;
+    z-index: 200;
+    width: 34.5vw;
+    margin-left: 1vw;
+    height: 4vh;
 
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 3vh;
     color: white;
-    background-color: #0b458c;
-    padding: 2vh 0 1vh 0;
+    background-color: #00459aae;
+    padding: 1vh 0 0vh 0;
     /* margin-bottom: 1em; */
+    font-size: 2vh;
 
     text-align: center;
 
     transition: all 0.5s ease-in-out;
 }
 .main-info:hover {
-    background-color: #1c79e8;
-    box-shadow: 0px 0px 8px 2px #888888;
-}
-h1 {
-    color: white;
-    font-size: 1.2em;
-    margin: 0;
-    padding-bottom: 1em;
-    display: inline;
-}
-p { 
-    margin: 0;
-    padding: 0.2em;
-    display: inline;
-}
+    background-color: #00459ac9;
+    /* box-shadow: 0px 0px 8px 2px #888888; */
+}   
 </style>

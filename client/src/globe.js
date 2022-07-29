@@ -1,5 +1,7 @@
 import { ref, computed } from "vue"
 
+export const admin = ref(false)
+
 // 所有的零件
 export const parts = ref([])
 
