@@ -6,18 +6,17 @@ import { watch } from "vue"
 import "./BimfaceSDKLoader.js"
 import { currentPart, searchParts } from "../../globe"
 
-const viewToken = '9d1663de53d94cc0a8e65b284305885e'
+const viewToken = '62a7cb64c79c42ffbd47f100b0a8cd86'
 var viewer3D
 var model3D
 var app
 var markerContainer
 
 // 配置JSSDK加载项
-window.onload = function () {
-    var loaderConfig = new BimfaceSDKLoaderConfig();
-    loaderConfig.viewToken = viewToken;
-    BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);
-}
+var loaderConfig = new BimfaceSDKLoaderConfig();
+loaderConfig.viewToken = viewToken;
+BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);
+
 // 加载成功回调函数，主要的配置内容都在此函数中
 function successCallback(viewMetaData) {
     var dom4Show = document.getElementById('domId');
