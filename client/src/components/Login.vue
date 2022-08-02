@@ -49,7 +49,7 @@ div.form {
     border-radius: 40px;
 }
 div.form:hover {
-    box-shadow: 0 0 10px 2px #a6a6a6;
+    box-shadow: 0 0 10px 2px #c6c6c6;
 }
 input {
     width: 40vw;
@@ -67,7 +67,7 @@ input {
 }
 input:hover, input:focus {
     outline: none;
-    background-color: #acbcd3;
+    /* background-color: #acbcd3; */
 }
 button {
     width: 10vw;
