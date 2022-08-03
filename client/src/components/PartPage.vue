@@ -3,14 +3,13 @@ import { traceName, traceID, isPart, currentPart } from "../globe"
 
 const back = () => { 
     traceID.value.pop()
-    traceName.value.pop()
     isPart.value = false
 }
 
 </script>
 
 <template>
-    <h2>{{ traceName[traceName.length - 1] }}</h2>
+    <h2>{{ currentPart.name }}</h2>
     <p>{{ currentPart }}</p>
 
     <el-button-group>

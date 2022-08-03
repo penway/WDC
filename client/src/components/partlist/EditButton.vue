@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import axios from "axios"
-
-import { parts, partAPI } from "../../globe"
+import { Edit } from '@element-plus/icons-vue'
+import { allParts, partAPI } from "../../globe"
 
 const props = defineProps([
     "name",
@@ -48,7 +48,7 @@ async function editPart() {
         c_z: parseFloat(c_z.value),
     })
 
-    parts.value = response.data
+    allParts.value = response.data
     
     editPartDialog.value = false
 }
@@ -57,7 +57,7 @@ async function editPart() {
 <template>
     <el-popover title="编辑零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button @click="toggleEditPartDialog()">编辑</el-button>
+            <el-button @click="toggleEditPartDialog()" :icon="Edit"></el-button>
         </template>
 
         <el-form class="form" align="center">

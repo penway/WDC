@@ -1,10 +1,10 @@
 <script setup>
-import { weight_sum, cox, coy, coz } from "../globe"
+import { weight_sum, cox, coy, coz } from "@/globe"
 </script>
 
 
 <template>
-    <div class="main-info">
+    <div class="main-info" @click="make()">
         总质量
         {{ weight_sum }} kg &nbsp&nbsp&nbsp&nbsp&nbsp
         重心

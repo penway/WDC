@@ -6,7 +6,7 @@ const bodyParser         = require('body-parser')
 require('dotenv').config()
 
 const partRoutes     = require('./route/api/Partlist')
-const interRoutes     = require('./route/api/InterAPI')
+const projectRoutes     = require('./route/api/ProjectAPI')
 
 app.use(cors())  // to allow cross origin requests
 app.use(bodyParser.json())
@@ -20,7 +20,7 @@ mongoose
     .catch((err) => console.log(err))
 
 app.use('/api/part/', partRoutes)
-app.use('/api/inter/', interRoutes)
+app.use('/api/project/', projectRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`App is listening at http://localhost:${process.env.PORT}`)

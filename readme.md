@@ -46,4 +46,4 @@
 
 ### 运行
 
-呆在server文件夹中，执行`npm run dev`观察输出结果，若无报错即可打开网页 localhost:8080。
+呆在 server 文件夹中，执行 `npm run dev` 观察输出结果，若无报错即可打开网页 localhost:8080。

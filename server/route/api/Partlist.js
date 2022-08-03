@@ -4,6 +4,7 @@
 
 const router = require('express').Router()
 const Part = require('../../models/Part')
+const Project = require('../../models/Project')
 
 
 async function getPartList() {
@@ -26,10 +27,15 @@ router.get('/', async (req, res) => {
 
 async function updateParent(id) {
 
-    if (id == "0") return  // this means no parent, end of update
+    var updateProject = false
 
-    const oldParent = await Part.findById(id)
+    var oldParent = await Part.findById(id)
     const children = await Part.find({parentID: id})
+
+    if ( oldParent == undefined ) {
+        oldParent = await Project.findById(id)
+        updateProject = true
+    }
 
     let totalWeight = 0
     children.forEach(child => totalWeight += child.weight)
@@ -53,9 +59,13 @@ async function updateParent(id) {
         }
     }
 
-    await Part.findByIdAndUpdate(id, newParent)
-
-    await updateParent(oldParent.parentID)  // recursive update
+    if ( updateProject ) {
+        await Project.findByIdAndUpdate(id, newParent)
+    }
+    else {
+        await Part.findByIdAndUpdate(id, newParent)
+        await updateParent(oldParent.parentID)  // recursive update
+    }
 }
 
 

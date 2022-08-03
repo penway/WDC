@@ -1,15 +1,23 @@
 <script setup>
-import { traceName, traceID, isPart, searchParts, localSearch, currentPart, admin } from "../../globe"
+import { Folder, Cpu } from '@element-plus/icons-vue'
+import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects  } from "@/globe"
+import { ElMessage } from 'element-plus'
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewPartButton from "./ButtonNewPart.vue"
 
 const forward = (row) => {
-
-    traceID.value.push(row._id)
-    traceName.value.push(row.name)
-    isPart.value = !row.isFolder
+    if (row.isFolder) {
+        traceID.value.push(row._id)
+    }
+    else {
+        ElMessage({
+            message: '这是一个零件。', 
+            grouping: true,
+            showClose: true,
+        })
+    }
 }
 
 </script>
@@ -17,7 +25,9 @@ const forward = (row) => {
 <template>
 
     <div class="head">
-        <span class="new-part-button"><new-part-button/></span>
+        <span class="new-part-button">
+            <new-part-button />
+        </span>
         <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
         <span class="headerii-info" v-if="traceID.length > 1">
             {{ currentPart.weight }} kg
@@ -25,16 +35,22 @@ const forward = (row) => {
             {{ currentPart.c_y.toFixed(2) }},
             {{ currentPart.c_z.toFixed(2) }})
         </span>
-        <input class="local-search" v-model="localSearch" placeholder="搜索当前部件"/>
+        <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
     </div>
 
-    
-    <el-table :data="searchParts" height="75vh"
-        @row-dblclick="forward($event)"
-        stripe
-        >
+    <el-table :data="searchParts" height="75vh" @row-dblclick="forward($event)" stripe>
 
-        <el-table-column prop="name" label="名称" />
+        <el-table-column prop="name" label="名称" width="210%">
+            <template #default="scope">
+                <el-icon :size="size" :color="color" v-if="scope.row.isFolder">
+                    <Folder />
+                </el-icon>
+                <el-icon :size="size" :color="color" v-else>
+                    <Cpu />
+                </el-icon>
+                {{ scope.row.name }}
+            </template>
+        </el-table-column>
         <el-table-column prop="weight" label="质量 (kg)" />
 
         <el-table-column label="坐标">
@@ -45,12 +61,11 @@ const forward = (row) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="210%" v-if="admin">
+        <el-table-column fixed="right" label="操作" width="180%">
             <template #default="scope">
-                <el-button-group >
+                <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
-                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" 
-                        :isFolder="scope.row.isFolder" />
+                        :c_y="scope.row.c_y" :c_z="scope.row.c_z" :_id="scope.row._id" :isFolder="scope.row.isFolder" />
                     <move-button :_id="scope.row._id" />
                     <delete-button :_id="scope.row._id" />
                 </el-button-group>

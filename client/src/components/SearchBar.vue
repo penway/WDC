@@ -5,10 +5,10 @@ import { parts, traceID, traceName, localSearch } from "../globe"
 const globalSearch = ref("")
 
 const querySearch = (queryString, cb) => {
-    cb(
+    cb (
         parts.value
         .filter(
-            part => part.name.toLowerCase().includes(queryString.toLowerCase())
+            part => part.name.toLowerCase().includes(queryString.toLowerCase()) 
         )
         .map(
             part => {return {value: part.name, _id: part._id}}
@@ -21,16 +21,17 @@ const handleSelect = (item) => {
     var idList = []
     var nameList = []
 
-    while (currentParent != "0") {
+    while (true) {
         var currentPart = parts.value.find(part => part._id == currentParent)
+        if (currentPart == undefined) break
         idList.push(currentPart._id)
         nameList.push(currentPart.name)
         currentParent = currentPart.parentID
     }
 
-    nameList.push("速翼2020")
+    nameList.push(traceName.value[0])
     nameList.reverse().pop()
-    idList.push(0)
+    idList.push(traceID.value[0])
     idList.reverse().pop()
 
     console.log(nameList)

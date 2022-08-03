@@ -1,8 +1,8 @@
 <script setup>
 import axios from "axios"
 import { ref } from 'vue'
-
-import { parts, partAPI, traceID, traceName, localSearch } from "../../globe"
+import { ArrowLeftBold, Plus } from '@element-plus/icons-vue'
+import { allParts, partAPI, traceID, localSearch, currentProjectID } from "@/globe"
 
 const name = ref("")
 const weight = ref(0)
@@ -22,9 +22,10 @@ async function addPartButtonPressed(close) {
         c_y: c_y.value,
         c_z: c_z.value,
         parentID: traceID.value[traceID.value.length - 1],
+        projectID: currentProjectID.value,
         isFolder: isFolder.value,
     });
-    parts.value = response.data
+    allParts.value = response.data
 
     // reset input values
     name.value = "";
@@ -36,18 +37,17 @@ async function addPartButtonPressed(close) {
     }
 }
 
-const back = () => { 
+const back = () => {
+
     traceID.value.pop()
-    traceName.value.pop()
     localSearch.value = ""
 }
 </script>
 
 <template>
     <el-button-group>
-        <el-button v-if="traceID.length > 1" @click="back" plain class="back" >back</el-button>
-        <el-button v-else disabled @click="back" plain class="back">back</el-button>
-        <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog">新建零件</el-button>
+        <el-button @click="back" plain class="back" :icon="ArrowLeftBold"></el-button>
+        <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
     </el-button-group>
 
     <el-drawer v-model="newPartDialog" title="定义新零件">

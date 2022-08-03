@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import axios from "axios"
-import { parts, partAPI } from "../../globe"
-
+import { parts, partAPI, allParts, currentProjectID, traceName } from "../../globe"
+import { Right } from '@element-plus/icons-vue'
 const props = defineProps(["_id"])
 
 const globalSearch = ref("")
@@ -12,8 +12,9 @@ const ancestor = (item) => {
     var idList = []
     var nameList = []
 
-    while (currentParent != "0") {
+    while (true) {
         var currentPart = parts.value.find(part => part._id == currentParent)
+        if (currentPart == undefined) break
         idList.push(currentPart._id)
         nameList.push(currentPart.name)
         currentParent = currentPart.parentID
@@ -35,8 +36,8 @@ const querySearch = (queryString, cb) => {
         }})
 
     res.push({
-        value: "速翼2020",
-        _id: 0,
+        value: traceName.value[0],
+        _id: currentProjectID,
     })
 
     cb(res)
@@ -46,7 +47,7 @@ const movePart = async (item) => {
     const response = await axios.patch(partAPI + props._id, {
         parentID: item._id
     })
-    parts.value = response.data
+    allParts.value = response.data
 
     globalSearch.value = ""
 }
@@ -55,7 +56,7 @@ const movePart = async (item) => {
 <template>
     <el-popover title="移动零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button>移动</el-button>
+            <el-button :icon="Right"></el-button>
         </template>
 
     <el-autocomplete 

@@ -25,6 +25,10 @@ const PartSchema = new Schema({
         type: String,
         required: true,
     },
+    projectID: {
+        type: String,
+        required: true,
+    },
     isFolder: {
         type: Boolean,
         require: true,

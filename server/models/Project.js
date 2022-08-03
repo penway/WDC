@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const PartSchema = new Schema({
+const ProjectSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -21,8 +21,16 @@ const PartSchema = new Schema({
         type: Number,
         required: true,
     },
+    viewToken: {
+        type: String,
+        required: true,
+    },
+    year: {
+        type: Number,
+        required: true,
+    }
 })
 
-const Interchangeable = model('Interchangeable', PartSchema)
+const Project = model('project', ProjectSchema)
 
-module.exports = Interchangeable
+module.exports = Project

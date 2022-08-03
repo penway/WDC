@@ -1,9 +1,9 @@
 <script setup>
 import axios from "axios"
 import { 
-    parts, partAPI
+    parts, partAPI, allParts
     } from "../../globe"
-
+import { Delete } from '@element-plus/icons-vue'
 const props = defineProps(["_id"])
 const emit = defineEmits(["del-part"])
 
@@ -12,7 +12,7 @@ async function removePart() {
     const succeed = await axios.delete(partAPI + props._id);
 
     if (succeed) {
-        parts.value = succeed.data
+        allParts.value = succeed.data
     } else {
         alert("Deletion Failed!")
     }
@@ -22,7 +22,7 @@ async function removePart() {
 <template>
 <el-popconfirm title="确定删除?" @confirm="removePart(props._id)">
     <template #reference>
-        <el-button>删除</el-button>
+        <el-button :icon="Delete"></el-button>
     </template>
 </el-popconfirm>
 </template>
