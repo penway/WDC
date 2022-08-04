@@ -6,7 +6,7 @@ import { weight_sum, cox, coy, coz } from "@/globe"
 <template>
     <div class="main-info">
         总质量
-        {{ weight_sum }} kg &nbsp&nbsp&nbsp&nbsp&nbsp
+        {{ weight_sum.toFixed(1) }} kg &nbsp&nbsp&nbsp&nbsp&nbsp
         重心
         ({{ cox }}, 
         {{ coy }}, 
