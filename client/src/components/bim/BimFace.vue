@@ -4,18 +4,62 @@
 
 import { watch } from "vue"
 import "./BimfaceSDKLoader.js"
-import { currentPart, searchParts } from "../../globe"
+import { currentPart, searchParts, projects, currentProjectID } from "@/globe"
 
-const viewToken = '62a7cb64c79c42ffbd47f100b0a8cd86'
-var viewer3D
-var model3D
+// 获取 AccessToken
+// const appAPI = 'https://api.bimface.com/oauth2/token'
+// const appKey = 'KS3gpwmw7i5hiTFeBHWWrMdhkJQ3ELif'
+// const appSecret = '9WVj7tnlF78eF9ty3dq8SbjNjYoF5VDY'
+// const appAuthor = 'Basic ' + btoa(appKey + ':' + appSecret)
+// console.log(appAuthor)
+// const appHeader = { headers: { 'Authorization': appAuthor, 'Content-Type': 'application/json'}}
+// axios.post(appAPI, appHeader)
+//     .then(response => {
+//         console.log(response)
+//     })
+//     .catch((e) => {
+//             console.log(e);
+//     })
+
+// const fileId = '10000754336351'
+// const viewAPI = 'https://api.bimface.com/view/token?fileId='
+
+// const authorization = { 
+//     Authorization: 'Bearer cn-e9725999-0b36-4c0e-bdca-38ea88888888'
+//     }
+
+// 获取 viewToken
+// console.log("Shit started")
+// axios.get(viewAPI+fileId, { headers: authorization })
+//     .then(response => {
+//         console.log(response)
+//     })
+//     .catch((e) => {
+//             console.log(e);
+//     })
+
+
+// get viewToken
+const currentProjectViewToken = projects.value.find(
+    project => project._id == currentProjectID.value).viewToken
+
+var viewToken
+if (currentProjectViewToken == 'placeholder') {
+    viewToken = 'd2ab2968c0cf4276bf28125e2843ed4b'
+}
+else
+    viewToken = currentProjectViewToken
+
+
 var app
+var model3D
+var viewer3D
 var markerContainer
 
 // 配置JSSDK加载项
-var loaderConfig = new BimfaceSDKLoaderConfig();
-loaderConfig.viewToken = viewToken;
-BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);
+var loaderConfig = new BimfaceSDKLoaderConfig()
+loaderConfig.viewToken = viewToken
+BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback)
 
 // 加载成功回调函数，主要的配置内容都在此函数中
 function successCallback(viewMetaData) {
@@ -53,7 +97,7 @@ function successCallback(viewMetaData) {
 }
 // 加载失败回调函数
 function failureCallback(error) {
-    console.log(error);
+    alert("模型加载失败；有可能是 ViewToken 已失效，请注意替换")
 }
 function makeMarkerContainer() {
     // 构造三维标签容器配置markerContainerConfig
@@ -98,8 +142,10 @@ const makeMarkers = () => {
     markerContainer.clear()
     searchParts.value.forEach((part) => {
         addMarker(part, false)
+        console.log("1")
     })
-    addMarker(currentPart.value, true)
+    if (searchParts.value.length > 0)  // 加这一行是因为返回到主页面的时候没有currentPart
+        addMarker(currentPart.value, true)
 }
 
 const transparentAll = () => {

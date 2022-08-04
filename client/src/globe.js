@@ -2,6 +2,9 @@ import { ref, computed } from "vue"
 
 // 所有的零件
 export const projects = ref([])
+export const projectSorted = computed(() => {
+    projects.value.sort((a, b) => a.year - b.year)
+})
 export const currentProjectID = ref("")
 export const allParts = ref([])
 export const parts = computed(() => {

@@ -42,10 +42,10 @@ const forward = (row) => {
 
         <el-table-column prop="name" label="名称" width="210%">
             <template #default="scope">
-                <el-icon :size="size" :color="color" v-if="scope.row.isFolder">
+                <el-icon v-if="scope.row.isFolder">
                     <Folder />
                 </el-icon>
-                <el-icon :size="size" :color="color" v-else>
+                <el-icon v-else>
                     <Cpu />
                 </el-icon>
                 {{ scope.row.name }}

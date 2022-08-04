@@ -20,6 +20,7 @@ const addProjectButtonPressed = async () => {
         viewToken: "placeholder",
     })
     projects.value = response.data
+    projects.value.sort((a, b) => a.year - b.year)
 
     name.value = ""
     year.value = 2020
@@ -59,5 +60,14 @@ button.new {
     color: white;
     border-radius: 10px;
     border: none;
+    transition: all 0.2s ease-in-out;
+}
+button.new:hover {
+    cursor: pointer;
+    color: #0078f7;
+    background-color: #0078f7;
+}
+.el-input {
+    caret-color: black;
 }
 </style>

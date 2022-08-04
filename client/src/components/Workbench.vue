@@ -9,7 +9,6 @@
                     <h1>质量分布计算</h1>
                 </div>
                 <div>
-                    
                     <BimFace/>
                     <main-info/>
                 </div>
