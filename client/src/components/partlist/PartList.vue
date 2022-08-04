@@ -54,7 +54,7 @@ const forward = (row) => {
                 </span>
             </template>
         </el-table-column>
-        <el-table-column prop="weight" label="质量 (kg)" sortable/>
+        <el-table-column prop="w2" label="质量 (kg)" sortable/>
 
         <el-table-column label="坐标">
             <el-table-column prop="x2" label="x" />
