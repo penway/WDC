@@ -52,10 +52,11 @@ const addProjectButtonPressed = async () => {
 <style scoped>
 button.new {
     position: fixed;
-    right: 2vh;
-    top: 2vh;
+    right: 2.5vh;
+    top: 2.5vh;
     height: 6vh;
     width: 12vh;
+    font-size: 2vh;
     background-color: #002760;
     color: white;
     border-radius: 10px;

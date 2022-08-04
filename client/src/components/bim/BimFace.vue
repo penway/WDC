@@ -134,15 +134,17 @@ function addMarker(part, isParent) {
     //         grouping: true,
     //     })
     // });
-    
-    markerContainer.addItem(marker);  // 将三维标签添加至容器内
+    try {
+        markerContainer.addItem(marker);  // 将三维标签添加至容器内
+    } catch( error ) {
+        console.log("fail on add marker")
+    }
 }
 
 const makeMarkers = () => {
     markerContainer.clear()
     searchParts.value.forEach((part) => {
         addMarker(part, false)
-        console.log("1")
     })
     if (searchParts.value.length > 0)  // 加这一行是因为返回到主页面的时候没有currentPart
         addMarker(currentPart.value, true)

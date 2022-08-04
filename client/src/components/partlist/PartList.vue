@@ -40,7 +40,7 @@ const forward = (row) => {
 
     <el-table :data="searchParts" height="75vh" @row-dblclick="forward($event)" stripe>
 
-        <el-table-column prop="name" label="名称" width="210%">
+        <el-table-column prop="name" label="名称" width="210%" sortable>
             <template #default="scope">
                 <el-icon v-if="scope.row.isFolder">
                     <Folder />
@@ -48,10 +48,13 @@ const forward = (row) => {
                 <el-icon v-else>
                     <Cpu />
                 </el-icon>
-                {{ scope.row.name }}
+                &ThickSpace;
+                <span class="nameRow" @click="forward(scope.row)">
+                    {{ scope.row.name }}
+                </span>
             </template>
         </el-table-column>
-        <el-table-column prop="weight" label="质量 (kg)" />
+        <el-table-column prop="weight" label="质量 (kg)" sortable/>
 
         <el-table-column label="坐标">
             <el-table-column prop="x2" label="x" />
@@ -82,7 +85,9 @@ const forward = (row) => {
     color: #0b3c76 !important;
     cursor: pointer;
 }
-
+.nameRow:hover {
+    text-decoration: underline;
+}
 .new-part-button {
     vertical-align: text-top;
 }

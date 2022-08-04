@@ -56,6 +56,9 @@ body {
     width: 100px;
     display: inline;
 }
+.logo:hover {
+    cursor: pointer;
+}
 h1 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 2em;

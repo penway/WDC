@@ -20,7 +20,11 @@ const intoProject = (id) => {
 
 <template>
 
-    <header class="page-header">WDC <NewProjectButton/></header>
+    <header class="page-header">
+        <img src="@/assets/srticonW.png" class="logoW" />
+        质量分布计算
+        <NewProjectButton/>
+    </header>
     <div class="card-container">
 
         <div 
@@ -46,12 +50,17 @@ const intoProject = (id) => {
 </template>
 
 <style scoped>
-
+.logoW {
+    margin-top: 0.1em;
+    margin-right: 0.5em;
+    width: 100px;
+    display: inline;
+}
 .page-header {
     padding-top: 2vh;
-    padding-left: 7vh;
+    padding-left: 4vh;
     font-size: 40px;
-    height: 8vh;
+    height: 9vh;
     background-color: #1157aa;
     color: white;
     caret-color: transparent;

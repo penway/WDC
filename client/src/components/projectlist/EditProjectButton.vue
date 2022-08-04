@@ -76,9 +76,11 @@ const confirmDeletion = async () => {
             </el-form-item>
             <el-form-item label="" :label-width="80">
             <el-button type="primary" @click="editProjectButtonPressed()">
-                Done
+                确定
             </el-button>
-            <el-button type="danger" @click="dialogVisible = true"></el-button>
+            <el-button type="danger" @click="dialogVisible = true">
+                删除
+            </el-button>
             </el-form-item>
         </el-form>
     </el-drawer>
@@ -89,14 +91,14 @@ const confirmDeletion = async () => {
     width="30%"
     :before-close="handleClose"
     >
-    <span class="disabledText">请输入项目名称 {{ props.name }} 确认删除</span>
-    <br/>
+    <span class="disabledText">请输入项目名称 <b>{{ props.name }}</b> 确认删除</span>
+    <br/><br/>
     <el-input v-model="confirmText"></el-input>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="confirmDeletion">
-        Confirm
+        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="danger" @click="confirmDeletion">
+        确认删除
         </el-button>
       </span>
     </template>
