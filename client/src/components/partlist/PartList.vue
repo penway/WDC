@@ -30,7 +30,7 @@ const forward = (row) => {
         </span>
         <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
         <span class="headerii-info" v-if="traceID.length > 1">
-            {{ currentPart.weight }} kg
+            {{ currentPart.weight.toFixed(3) }} kg
             ({{ currentPart.c_x.toFixed(2) }},
             {{ currentPart.c_y.toFixed(2) }},
             {{ currentPart.c_z.toFixed(2) }})

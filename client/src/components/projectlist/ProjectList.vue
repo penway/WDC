@@ -40,7 +40,7 @@ const intoProject = (id) => {
             <!-- <button @click="intoProject(project._id)">进入</button> -->
             <footer class="card-footer">
                 <br/><br/><br/><br/>
-                {{ project.weight }}kg
+                {{ project.weight.toFixed(3) }}kg
                 ({{ project.c_x.toFixed(0) }}, {{ project.c_y.toFixed(0) }}, {{ project.c_z.toFixed(0) }})
                 <br/><br/>
                 {{ project.year }}</footer>

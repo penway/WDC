@@ -37,10 +37,11 @@ export const searchParts = computed(() => {
     )
     // 部分数据转两位小数
     .map( part => ({
-            ...part,                  // 继承所有数据
-            x2: part.c_x.toFixed(2),  // 新建数据取两位小数，因为修改的时候还是希望全精度
-            y2: part.c_y.toFixed(2),
-            z2: part.c_z.toFixed(2),
+        ...part,                  // 继承所有数据
+        w2: part.weight.toFixed(3),
+        x2: part.c_x.toFixed(2),  // 新建数据取两位小数，因为修改的时候还是希望全精度
+        y2: part.c_y.toFixed(2),
+        z2: part.c_z.toFixed(2),
     }))
 })
 
