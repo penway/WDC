@@ -59,7 +59,7 @@ async function editPart() {
             <el-input-number v-model="c_y" v-if="!isFolder"/>
             <el-input-number v-model="c_z" v-if="!isFolder"/> 
 
-            <el-button type="primary" @click="editPart" style="margin-top: 1em; align: center">编辑零件</el-button>
+            <el-button @click="editPart" style="margin-top: 1em; align: center">编辑零件</el-button>
         </el-form>
     </el-popover>
 </template>

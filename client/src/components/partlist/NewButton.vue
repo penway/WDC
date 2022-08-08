@@ -44,7 +44,7 @@ async function addPartButtonPressed(close) {
     <el-button v-if="multipleSelection.length > 0" class="confirm" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
     <el-button v-else class="confirm full" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
 
-    <el-drawer v-model="newPartDialog" title="定义新零件">
+    <el-drawer v-model="newPartDialog" title="定义新零件" direction="ltr">
         <el-form class="form">
             <el-form-item label="名称" :label-width="100">
                 <el-input v-model="name" type="text" placeholder="enter name" />
@@ -81,8 +81,12 @@ async function addPartButtonPressed(close) {
 </template>
 
 
-<style scoped>
-
+<style>
+.el-drawer {
+    width: 38.2% !important;
+}
+.el-overlay {
+    background-color: rgba(0, 0, 0, 0.2)}
 .confirm {
     height: 2.5em;
     background-color: #e6e6e6;

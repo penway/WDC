@@ -32,7 +32,7 @@ const addProjectButtonPressed = async () => {
 <template>
     <button class="new" @click="newProjectDialog=true">新项目</button>
 
-    <el-drawer v-model="newProjectDialog" title="新项目">
+    <el-dialog v-model="newProjectDialog" title="新项目">
         <el-form class="form">
             <el-form-item label="名称" :label-width="40">
                 <el-input v-model="name" type="text" placeholder="enter name" />
@@ -46,10 +46,15 @@ const addProjectButtonPressed = async () => {
             </el-button>
             </el-form-item>
         </el-form>
-    </el-drawer>
+    </el-dialog>
 </template>
 
-<style scoped>
+<style>
+.el-dialog {
+    border-radius: 20px;
+    top: 5%;
+    width: 40%;
+}
 button.new {
     position: fixed;
     right: 2.5vh;
