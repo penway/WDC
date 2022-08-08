@@ -181,8 +181,9 @@ const transparentAll = () => {
 .el-loading-mask {
     /* background-color: #094ca3bd; */
     background-image: linear-gradient(#075395, #002d69);
-    border-radius: 4vh;
+    border-radius: 3.6vh;
     color: white;
+    margin: 1px;
 }
 .domClass {
     width: 36.5vw;
