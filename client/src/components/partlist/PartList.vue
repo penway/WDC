@@ -6,6 +6,7 @@ import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewButton from "./NewButton.vue"
+import DuplicateButton from './DuplicateButton.vue'
 
 const forward = (row) => {
     if (row.isFolder) {
@@ -52,6 +53,7 @@ const back = () => {
         <edit-button v-if="multipleSelection.length == 1"/>
         <move-button v-if="multipleSelection.length > 0"/>
         <delete-button v-if="multipleSelection.length > 0"/>
+        <DuplicateButton v-if="multipleSelection.length > 0"/>
     </el-button-group>
     <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
 

@@ -38,7 +38,7 @@ export const searchParts = computed(() => {
     )
     // 避免 placeholder 的出现，placeholder 详见 MoveButton
     .filter(
-        part => part.name != "placeholder"
+        part => part.name != "gfhdtvsjmjfcfdcyhd"
     )
     // 部分数据转两位小数
     .map( part => ({

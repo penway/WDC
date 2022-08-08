@@ -50,11 +50,11 @@ const movePart = async (item) => {
         const response = await axios.patch(partAPI + part._id, {
             parentID: item._id
         })
-        // allParts.value = response.data
+        allParts.value = response.data
     })
 
     var response = await axios.post(partAPI, {
-        name: "placeholder",
+        name: "gfhdtvsjmjfcfdcyhd",
         weight: 0,
         c_x: 0,
         c_y: 0,
@@ -65,7 +65,7 @@ const movePart = async (item) => {
     });
     allParts.value = response.data
 
-    let x = response.data.find(part => part.name == "placeholder")
+    let x = response.data.find(part => part.name == "gfhdtvsjmjfcfdcyhd")
     var response = await axios.delete(partAPI + x._id)
     allParts.value = response.data
 

@@ -4,8 +4,6 @@ import {
     parts, partAPI, allParts, multipleSelection
     } from "@/globe"
 import { Delete } from '@element-plus/icons-vue'
-const props = defineProps(["_id"])
-const emit = defineEmits(["del-part"])
 
 async function removePart() {
 
@@ -22,7 +20,7 @@ async function removePart() {
 </script>
 
 <template>
-<el-popconfirm title="确定删除?" @confirm="removePart(props._id)">
+<el-popconfirm title="确定删除?" @confirm="removePart()">
     <template #reference>
         <el-button v-if="multipleSelection.length > 0" :icon="Delete"></el-button>
         <el-button v-else disabled :icon="Delete"></el-button>
