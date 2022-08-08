@@ -142,12 +142,9 @@ const back = () => {
 }
 .headerii-info {
     margin-left: 1em;
-    margin-bottom: 1em;
     padding: 0.5em 1em 0.2em 1em;
-
     border-radius: 10px;
     font-size: 1em;
-
     transition: all 0.2s ease-in-out;
 }
 .headerii-info:hover {
