@@ -62,8 +62,10 @@ const confirmDeletion = async () => {
 
 <template>
     <button class="edit" @click="onEditClick">编辑</button>
-
-    <el-drawer v-model="editProjectDialog" title="编辑项目">
+    <Transition>
+        <div v-if="editProjectDialog" class="x-overlay"/>
+    </Transition>
+    <el-dialog v-model="editProjectDialog" title="编辑项目">
         <el-form class="form">
             <el-form-item label="名称" :label-width="80">
                 <el-input v-model="name" type="text"/>
@@ -83,13 +85,12 @@ const confirmDeletion = async () => {
             </el-button>
             </el-form-item>
         </el-form>
-    </el-drawer>
+    </el-dialog>
 
     <el-dialog
-    v-model="dialogVisible"
-    title="危险！你在尝试删除一整个项目。"
-    width="30%"
-    :before-close="handleClose"
+        v-model="dialogVisible"
+        title="危险！你在尝试删除一整个项目。"
+        width="30%"
     >
     <span class="disabledText">请输入项目名称 <b>{{ props.name }}</b> 确认删除</span>
     <br/><br/>

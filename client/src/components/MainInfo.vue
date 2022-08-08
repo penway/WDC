@@ -32,7 +32,7 @@ import { weight_sum, cox, coy, coz } from "@/globe"
     font-size: 2vh;
 
     text-align: center;
-
+    z-index: 2000;
     transition: all 0.5s ease-in-out;
 }
 .main-info:hover {

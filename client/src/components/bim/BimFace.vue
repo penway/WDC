@@ -5,9 +5,9 @@
 import { proxyRefs, watch } from "vue"
 import "./BimfaceSDKLoader.js"
 import { 
-    currentPart, searchParts, projects, currentProjectID, multipleSelection, multipleTableRef 
+    currentPart, searchParts, projects, currentProjectID, multipleSelection, 
     } from "@/globe"
-import { ElMessage } from 'element-plus'
+import { ElLoading } from 'element-plus'
 // 获取 AccessToken
 // const appAPI = 'https://api.bimface.com/oauth2/token'
 // const appKey = 'KS3gpwmw7i5hiTFeBHWWrMdhkJQ3ELif'
@@ -58,6 +58,7 @@ var model3D
 var viewer3D
 var markerContainer
 
+
 // 配置JSSDK加载项
 var loaderConfig = new BimfaceSDKLoaderConfig()
 loaderConfig.viewToken = viewToken
@@ -66,6 +67,14 @@ BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback)
 // 加载成功回调函数，主要的配置内容都在此函数中
 function successCallback(viewMetaData) {
     var dom4Show = document.getElementById('domId');
+
+    // 显示加载动画
+    const loadingInstance = ElLoading.service({
+        target: dom4Show,
+        fullscreen: false,
+        text: "正在加载3D模型",
+    })
+
     // 设置WebApplication3D的配置项
     var webAppConfig = new Glodon.Bimface.Application.WebApplication3DConfig();
     webAppConfig.domElement = dom4Show;
@@ -87,6 +96,7 @@ function successCallback(viewMetaData) {
         
         makeMarkers()
         transparentAll()
+        loadingInstance.close()
     });
 
     viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ComponentsHoverChanged, 
@@ -168,7 +178,12 @@ const transparentAll = () => {
 </template>
 
 <style>
-
+.el-loading-mask {
+    /* background-color: #094ca3bd; */
+    background-image: linear-gradient(#075395, #002d69);
+    border-radius: 4vh;
+    color: white;
+}
 .domClass {
     width: 36.5vw;
     height: 80vh;

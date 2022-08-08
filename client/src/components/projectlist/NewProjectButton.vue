@@ -32,6 +32,10 @@ const addProjectButtonPressed = async () => {
 <template>
     <button class="new" @click="newProjectDialog=true">新项目</button>
 
+    <Transition>
+        <div v-if="newProjectDialog" class="x-overlay"/>
+    </Transition>
+
     <el-dialog v-model="newProjectDialog" title="新项目">
         <el-form class="form">
             <el-form-item label="名称" :label-width="40">
@@ -54,6 +58,27 @@ const addProjectButtonPressed = async () => {
     border-radius: 20px;
     top: 5%;
     width: 40%;
+    background-color: #d6dce5e0;
+    backdrop-filter:blur(12px);
+}
+.x-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    backdrop-filter:blur(6px);
+    z-index: 2000;
+    transition: all 0.2s ease-in-out;
+}
+.v-enter-active,
+.v-leave-active {
+    backdrop-filter:blur(6px);
+    transition: all 0.5s ease;
+}
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
 }
 button.new {
     position: fixed;

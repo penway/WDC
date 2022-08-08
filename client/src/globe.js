@@ -23,8 +23,6 @@ export const traceName = computed(() =>
 ))
 
 export const localSearch = ref("")  // 局部搜索框字符串
-// export const multipleTableRef = ref<InstanceType<typeof ElTable>>([])
-export const multipleTableRef = ref()
 export const multipleSelection = ref([])  // 新的选择、搜索方法
 
 // 当前被搜索的零件列表
