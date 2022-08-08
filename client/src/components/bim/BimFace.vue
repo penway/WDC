@@ -123,14 +123,14 @@ function addMarker(part, isParent) {
     marker.setSize(30)
     marker.setWorldPosition({ "x": part.c_x, "y": part.c_y, "z": part.c_z })
     // 添加标签的点击事件
-    marker.onClick(() => {
-        ElMessage({
-            message: part.name,
-            grouping: true,
-        })
-        console.log(multipleSelection.value)
-        // multipleSelection.value.push(proxyRefs(part))
-    }); 
+    // marker.onClick(() => {
+    //     ElMessage({
+    //         message: part.name,
+    //         grouping: true,
+    //     })
+    //     console.log(multipleSelection.value)
+    //     // multipleSelection.value.push(proxyRefs(part))
+    // }); 
     marker.setTooltip(part.name + " " + part.weight.toFixed(1) + "kg");
     // marker.onHover(() => {
     //     ElMessage({

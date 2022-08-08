@@ -55,7 +55,8 @@ const back = () => {
     </el-button-group>
     <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
 
-    <el-table :data="searchParts" height="75vh" @row-dblclick="forward($event)" stripe
+    <el-table :data="searchParts" height="75vh" 
+        stripe
         @selection-change="handleSelectionChange">
         <el-table-column type="selection" />
         <el-table-column prop="name" label="名称" width="210%" sortable>
