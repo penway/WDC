@@ -23,6 +23,9 @@ export const traceName = computed(() =>
 ))
 
 export const localSearch = ref("")  // 局部搜索框字符串
+// export const multipleTableRef = ref<InstanceType<typeof ElTable>>([])
+export const multipleTableRef = ref()
+export const multipleSelection = ref([])  // 新的选择、搜索方法
 
 // 当前被搜索的零件列表
 export const searchParts = computed(() => {
@@ -34,6 +37,10 @@ export const searchParts = computed(() => {
     // 匹配搜索内容，不区分大小写
     .filter(
         part => part.name.toLowerCase().includes(localSearch.value.toLowerCase())
+    )
+    // 避免 placeholder 的出现，placeholder 详见 MoveButton
+    .filter(
+        part => part.name != "placeholder"
     )
     // 部分数据转两位小数
     .map( part => ({

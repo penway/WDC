@@ -1,11 +1,11 @@
 <script setup>
-import { Folder, Cpu } from '@element-plus/icons-vue'
-import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects  } from "@/globe"
+import { Folder, Cpu, ArrowLeftBold } from '@element-plus/icons-vue'
+import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects, multipleSelection  } from "@/globe"
 import { ElMessage } from 'element-plus'
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
-import NewPartButton from "./ButtonNewPart.vue"
+import NewButton from "./NewButton.vue"
 
 const forward = (row) => {
     if (row.isFolder) {
@@ -20,13 +20,22 @@ const forward = (row) => {
     }
 }
 
+const handleSelectionChange = (val) => {
+    multipleSelection.value = val
+}
+
+const back = () => {
+
+    traceID.value.pop()
+    localSearch.value = ""
+}
 </script>
 
 <template>
 
     <div class="head">
         <span class="new-part-button">
-            <new-part-button />
+            <el-button @click="back" plain class="back" :icon="ArrowLeftBold"></el-button>
         </span>
         <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
         <span class="headerii-info" v-if="traceID.length > 1">
@@ -35,11 +44,20 @@ const forward = (row) => {
             {{ currentPart.c_y.toFixed(2) }},
             {{ currentPart.c_z.toFixed(2) }})
         </span>
-        <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
+        
     </div>
 
-    <el-table :data="searchParts" height="75vh" @row-dblclick="forward($event)" stripe>
+    <el-button-group class="ops" >
+        <new-button />
+        <edit-button v-if="multipleSelection.length == 1"/>
+        <move-button v-if="multipleSelection.length > 0"/>
+        <delete-button v-if="multipleSelection.length > 0"/>
+    </el-button-group>
+    <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
 
+    <el-table :data="searchParts" height="75vh" @row-dblclick="forward($event)" stripe
+        @selection-change="handleSelectionChange">
+        <el-table-column type="selection" />
         <el-table-column prop="name" label="名称" width="210%" sortable>
             <template #default="scope">
                 <el-icon v-if="scope.row.isFolder">
@@ -54,9 +72,9 @@ const forward = (row) => {
                 </span>
             </template>
         </el-table-column>
-        <el-table-column prop="w2" label="质量 (kg)" sortable/>
+        <el-table-column prop="w2" label="质量 (kg)" sortable />
 
-        <el-table-column label="坐标">
+        <el-table-column label="质心坐标">
             <el-table-column prop="x2" label="x" />
             <el-table-column prop="y2" label="y" />
             <el-table-column prop="z2" label="z" />
@@ -64,7 +82,7 @@ const forward = (row) => {
             <!-- <el-table-column prop="isFolder" label="isFolder" /> -->
         </el-table-column>
 
-        <el-table-column fixed="right" label="操作" width="180%">
+        <!-- <el-table-column fixed="right" label="操作" width="180%">
             <template #default="scope">
                 <el-button-group>
                     <edit-button :name="scope.row.name" :weight="scope.row.weight" :c_x="scope.row.c_x"
@@ -73,12 +91,28 @@ const forward = (row) => {
                     <delete-button :_id="scope.row._id" />
                 </el-button-group>
             </template>
-        </el-table-column>
+        </el-table-column> -->
 
     </el-table>
 </template>
 
 <style>
+.back {
+    border: 0;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    background-color: #eaeaea00;
+}
+.back:hover {
+    color: black;
+    background-color: #ececec;
+}
+
+.ops {
+    position: relative;
+    left: 20px;
+    margin-bottom: 20px;
+}
 /* .el-table--enable-row-hover,  */
 .el-table__body tr:hover > td {
     background-color: #bdcad7 !important;

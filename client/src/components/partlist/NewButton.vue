@@ -2,7 +2,7 @@
 import axios from "axios"
 import { ref } from 'vue'
 import { ArrowLeftBold, Plus } from '@element-plus/icons-vue'
-import { allParts, partAPI, traceID, localSearch, currentProjectID } from "@/globe"
+import { allParts, partAPI, traceID, localSearch, currentProjectID, multipleSelection } from "@/globe"
 
 const name = ref("")
 const weight = ref(0)
@@ -37,18 +37,12 @@ async function addPartButtonPressed(close) {
     }
 }
 
-const back = () => {
 
-    traceID.value.pop()
-    localSearch.value = ""
-}
 </script>
 
 <template>
-    <el-button-group>
-        <el-button @click="back" plain class="back" :icon="ArrowLeftBold"></el-button>
-        <el-button type="primary" class="confirm" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
-    </el-button-group>
+    <el-button v-if="multipleSelection.length > 0" class="confirm" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
+    <el-button v-else class="confirm full" @click="newPartDialog = !newPartDialog" :icon="Plus"></el-button>
 
     <el-drawer v-model="newPartDialog" title="定义新零件">
         <el-form class="form">
@@ -88,28 +82,19 @@ const back = () => {
 
 
 <style scoped>
-.back {
-    border: 0;
-    border-radius: 10px;
-    transition: 0.3s ease-in-out;
-    background-color: #eaeaea;
-}
-.back:hover {
-    color: black;
-    background-color: #d1d1d1;
-}
-.is-disabled {
-    color: #c1c1c1 !important;
-    background-color: #f1f1f1 !important;
-}
+
 .confirm {
-    margin-bottom: 20px;
-    background-color: #1157aa;
+    height: 2.5em;
+    background-color: #e6e6e6;
     border-radius: 10px;
     border: 0;
+}
+.full {
+    border-radius: 10px !important;
 }
 .confirm:hover {
     background-color: rgb(46, 133, 255);
+    color: rgb(46, 133, 255);
 }
 .confirm:active {
     background-color: rgb(0, 106, 255);

@@ -2,18 +2,7 @@
 import { ref } from 'vue'
 import axios from "axios"
 import { Edit } from '@element-plus/icons-vue'
-import { allParts, partAPI } from "../../globe"
-
-const props = defineProps([
-    "name",
-    "weight",
-    "c_x",
-    "c_y",
-    "c_z",
-    "_id",
-    "isFolder"
-])
-const emit = defineEmits(["edit-part"])
+import { allParts, partAPI, multipleSelection } from "@/globe"
 
 const name = ref("")
 const weight = ref(0)
@@ -22,17 +11,19 @@ const c_y = ref(0)
 const c_z = ref(0)
 const isFolder = ref(false)
 
+const target = ref()
 const editPartDialog = ref(false)
 
 function toggleEditPartDialog() {
     // 打开对话框，传递数据
-    
-    name.value = props.name
-    weight.value = props.weight
-    c_x.value = props.c_x
-    c_y.value = props.c_y
-    c_z.value = props.c_z
-    isFolder.value = props.isFolder
+    target.value = multipleSelection.value[0]
+    console.log(target)
+    name.value = target.value.name
+    weight.value = target.value.weight
+    c_x.value = target.value.c_x
+    c_y.value = target.value.c_y
+    c_z.value = target.value.c_z
+    isFolder.value = target.value.isFolder
 
     editPartDialog.value = !editPartDialog.value
 }
@@ -40,7 +31,7 @@ function toggleEditPartDialog() {
 async function editPart() {
 
     // 调用接口修改数据
-    const response = await axios.patch(partAPI + props._id, {
+    const response = await axios.patch(partAPI + target.value._id, {
         name: name.value,
         weight: weight.value,
         c_x: parseFloat(c_x.value),
@@ -57,7 +48,8 @@ async function editPart() {
 <template>
     <el-popover title="编辑零件" trigger="click" style="background-color: #eeeeee">
         <template #reference>
-            <el-button @click="toggleEditPartDialog()" :icon="Edit"></el-button>
+            <el-button v-if="multipleSelection.length == 1" @click="toggleEditPartDialog()" :icon="Edit"></el-button>
+            <el-button v-else disabled @click="toggleEditPartDialog()" :icon="Edit"></el-button>
         </template>
 
         <el-form class="form" align="center">
@@ -72,3 +64,20 @@ async function editPart() {
     </el-popover>
 </template>
 
+<style scoped>
+.is-disabled {
+    color: #c1c1c1 !important;
+    background-color: #f1f1f1 !important;
+}
+button {
+    height: 2.5em;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    border: 0;
+    background-color: #e6e6e6;
+}
+button:hover, button:active, button:focus {
+    background-color: #0a8167;
+    color: #0a8167;;
+}
+</style>

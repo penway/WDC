@@ -2,10 +2,12 @@
 // 显示3D模型的组件，调用的是 广联达BIMFACE 的接口
 // 相关的文档和学习资料 https://bimface.com/
 
-import { watch } from "vue"
+import { proxyRefs, watch } from "vue"
 import "./BimfaceSDKLoader.js"
-import { currentPart, searchParts, projects, currentProjectID } from "@/globe"
-
+import { 
+    currentPart, searchParts, projects, currentProjectID, multipleSelection, multipleTableRef 
+    } from "@/globe"
+import { ElMessage } from 'element-plus'
 // 获取 AccessToken
 // const appAPI = 'https://api.bimface.com/oauth2/token'
 // const appKey = 'KS3gpwmw7i5hiTFeBHWWrMdhkJQ3ELif'
@@ -121,12 +123,14 @@ function addMarker(part, isParent) {
     marker.setSize(30)
     marker.setWorldPosition({ "x": part.c_x, "y": part.c_y, "z": part.c_z })
     // 添加标签的点击事件
-    // marker.onClick(() => {
-    //     ElMessage({
-    //         message: part.name,
-    //         grouping: true,
-    //     })
-    // });
+    marker.onClick(() => {
+        ElMessage({
+            message: part.name,
+            grouping: true,
+        })
+        console.log(multipleSelection.value)
+        // multipleSelection.value.push(proxyRefs(part))
+    }); 
     marker.setTooltip(part.name + " " + part.weight.toFixed(1) + "kg");
     // marker.onHover(() => {
     //     ElMessage({
