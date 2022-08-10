@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 import { Folder, Cpu, ArrowLeftBold } from '@element-plus/icons-vue'
 import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects, multipleSelection  } from "@/globe"
 import { ElMessage } from 'element-plus'
@@ -7,6 +8,8 @@ import MoveButton from "./MoveButton.vue"
 import DeleteButton from "./DeleteButton.vue"
 import NewButton from "./NewButton.vue"
 import DuplicateButton from './DuplicateButton.vue'
+
+const multipleTableRef = ref()
 
 const forward = (row) => {
     if (row.isFolder) {
@@ -21,8 +24,31 @@ const forward = (row) => {
     }
 }
 
+const clip = () => {
+    var text = ""
+    searchParts.value.forEach((part) => {
+        text += part.name + "\t"
+        text += part.weight + "\t"
+        text += part.c_x + "\t"
+        text += part.c_y + "\t"
+        text += part.c_z
+        text += "\n"
+    })
+    navigator.clipboard.writeText(text).then(() => {
+        ElMessage({
+            message: '已复制表格信息至剪贴板', 
+            grouping: true,
+            showClose: true,
+        })
+    })
+}
+
 const handleSelectionChange = (val) => {
     multipleSelection.value = val
+}
+
+const toggleSelection = (row) => {
+    multipleTableRef.value.toggleRowSelection(row, undefined)   
 }
 
 const back = () => {
@@ -38,7 +64,7 @@ const back = () => {
         <span class="new-part-button">
             <el-button @click="back" plain class="back" :icon="ArrowLeftBold"></el-button>
         </span>
-        <span class="headerii"><b>{{ traceName[traceName.length - 1] }}</b></span>
+        <span class="headerii" @click="clip"><b>{{ traceName[traceName.length - 1] }}</b></span>
         <span class="headerii-info" v-if="traceID.length > 1">
             {{ currentPart.weight.toFixed(3) }} kg
             ({{ currentPart.c_x.toFixed(2) }},
@@ -58,7 +84,10 @@ const back = () => {
     <input class="local-search" v-model="localSearch" placeholder="搜索当前部件" />
 
     <el-table :data="searchParts" height="75vh" 
+        ref="multipleTableRef"
         stripe
+        @row-click="toggleSelection"
+        @row-dblclick="forward"
         @selection-change="handleSelectionChange">
         <el-table-column type="selection" />
         <el-table-column prop="name" label="名称" width="210%" sortable>
@@ -141,6 +170,11 @@ const back = () => {
     margin-left: 1em;
     font-size: 1.5em;
     font-family: 'Lucida Sans';
+    transition: all 0.2s ease-in-out;
+}
+.headerii:hover {
+    cursor: pointer;
+    color: #2f5499;
 }
 .headerii-info {
     margin-left: 1em;

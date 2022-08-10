@@ -7,6 +7,7 @@ import { CopyDocument } from '@element-plus/icons-vue'
 import { ref } from "vue";
 
 const mirror = ref(true)
+const suffix = ref("")
 
 async function dupPart() {
 
@@ -15,7 +16,7 @@ async function dupPart() {
 
         var partName = part.name + (mirror.value
                 ? part.c_y > 0 ? "-R" : "-L"
-                : "-2")
+                : suffix.value)
 
         const response = await axios.post(partAPI, {
             name: partName,
@@ -45,7 +46,7 @@ async function dupChilren(children, parentID) {
 
         var partName = part.name + (mirror.value
                 ? part.c_y > 0 ? "-R" : "-L"
-                : "-2")
+                : suffix.value)
 
         const response = await axios.post(partAPI, {
             name: partName,
@@ -74,9 +75,13 @@ async function dupChilren(children, parentID) {
         <el-button v-else disabled :icon="Delete"></el-button>
     </template>
     <el-form class="form" align="center">
-            复制&nbsp;<el-switch v-model="mirror" /> 镜像
+        <el-input v-if="!mirror" v-model="suffix" placeholder="请输入后缀"/>
+        <br v-if="!mirror"/><br v-if="!mirror"/>
+        <el-switch v-model="mirror" /> 镜像
         <br/><br/>
-        <el-button @click="dupPart">复制</el-button>
+        
+        <el-button v-if="mirror" @click="dupPart">镜像</el-button>
+        <el-button v-else @click="dupPart">复制</el-button>
     </el-form>
 </el-popover>
 </template>
