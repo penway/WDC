@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Folder, Cpu, ArrowLeftBold } from '@element-plus/icons-vue'
-import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects, multipleSelection  } from "@/globe"
+import { traceName, traceID, isPart, searchParts, localSearch, currentPart, parts, projects, multipleSelection, multipleTableRef  } from "@/globe"
 import { ElMessage } from 'element-plus'
 import EditButton from "./EditButton.vue"
 import MoveButton from "./MoveButton.vue"
@@ -9,7 +9,7 @@ import DeleteButton from "./DeleteButton.vue"
 import NewButton from "./NewButton.vue"
 import DuplicateButton from './DuplicateButton.vue'
 
-const multipleTableRef = ref()
+
 
 const forward = (row) => {
     if (row.isFolder) {
